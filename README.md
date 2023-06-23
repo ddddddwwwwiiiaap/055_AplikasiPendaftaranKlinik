@@ -1,6 +1,17 @@
 # aplikasipendaftaranklinik
 
-A new Flutter project.
+Aplikasi Pendaftaran Klinik adalah sebuah platform digital yang memudahkan pengguna untuk mendaftar dan mengatur jadwal kunjungan ke sebuah klinik secara online. Dengan aplikasi ini, pengguna dapat melakukan pendaftaran, memilih poli, dan mengatur jadwal kunjungan dengan mudah tanpa perlu antri atau datang langsung ke klinik.
+
+# Perancangan Aplikasi Pendaftaran Klinik
+## Usecase Diagram
+![Usecase Diagram](https://user-images.githubusercontent.com/100464615/248213033-df17a88f-4493-4151-94f5-b749ee278da3.png)
+
+## Flowchart
+### User Admin
+![Usecase Diagram](https://user-images.githubusercontent.com/100464615/248213016-a309bb2f-9e99-472f-ba71-97b867368202.png)
+
+### User Pasien
+![Usecase Diagram](https://user-images.githubusercontent.com/100464615/248213051-9b7d5714-dbb1-471b-b174-82dd3300fe33.png)
 
 ## Getting Started
 
