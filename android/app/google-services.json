@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "196089247609",
+    "project_id": "aplikasipendaftaranklinik",
+    "storage_bucket": "aplikasipendaftaranklinik.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196089247609:android:530f2e251b62d47bf7e1a8",
+        "android_client_info": {
+          "package_name": "com.example.aplikasipendaftaranklinik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196089247609-l6r498qnrel226hc13upoph083v8k516.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgGRs1JEpPma7qI7Fh4LuhpryV6ZqfSjk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196089247609-l6r498qnrel226hc13upoph083v8k516.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
