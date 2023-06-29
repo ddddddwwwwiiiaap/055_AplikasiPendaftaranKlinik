@@ -1,6 +1,7 @@
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/login.dart';
 import 'package:aplikasipendaftaranklinik/view/role.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -187,5 +188,14 @@ class AuthController {
       );
     }
     return null;
+  }
+
+  Future<void> signOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    // ignore: use_build_context_synchronously
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const Login()),
+        (route) => false);
   }
 }
