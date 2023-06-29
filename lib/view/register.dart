@@ -191,6 +191,12 @@ class _RegisterState extends State<Register> {
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Nama tidak boleh kosong';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   nama = value;
                 },
@@ -218,6 +224,14 @@ class _RegisterState extends State<Register> {
                   border: InputBorder.none,
                   hintText: 'Email',
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email tidak boleh kosong';
+                  } else if (!value.contains('@')) {
+                    return 'Email tidak valid';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   email = value;
                 },
@@ -259,6 +273,14 @@ class _RegisterState extends State<Register> {
                   border: InputBorder.none,
                   hintText: 'Password',
                 ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Password tidak boleh kosong';
+                  } else if (value.length < 6) {
+                    return 'Password minimal 6 karakter';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   password = value;
                 },
