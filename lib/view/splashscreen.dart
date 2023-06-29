@@ -2,7 +2,6 @@ import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/login.dart';
-import 'package:aplikasipendaftaranklinik/view/register.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,13 +21,15 @@ class _SplashScreenState extends State<SplashScreen> {
         width: size.width,
         height: size.height,
         child: SafeArea(
-          child: Column(
-            children: [
-              buildHeader(size),
-              buildLogoApp(),
-              buildDescApp(),
-              buildButtonNext(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                buildHeader(size),
+                buildLogoApp(),
+                buildDescApp(),
+                buildButtonNext(),
+              ],
+            ),
           ),
         ),
       ),
