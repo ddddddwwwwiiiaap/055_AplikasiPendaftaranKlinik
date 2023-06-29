@@ -119,6 +119,14 @@ class _LoginState extends State<Login> {
                   border: InputBorder.none,
                   hintText: textEmail,
                 ),
+                validator:(value) {
+                  if (value!.isEmpty) {
+                    return 'Email tidak boleh kosong';
+                  } else if (!value.contains('@')) {
+                    return 'Email tidak valid';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   email = value;
                 },
@@ -156,6 +164,14 @@ class _LoginState extends State<Login> {
                   border: InputBorder.none,
                   hintText: 'Password',
                 ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Password tidak boleh kosong';
+                  } else if (value.length < 6) {
+                    return 'Password minimal 6 karakter';
+                  }
+                  return null;
+                },
                 onChanged: (value) {
                   password = value;
                 },
