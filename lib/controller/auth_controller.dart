@@ -195,7 +195,9 @@ class AuthController {
     // ignore: use_build_context_synchronously
     Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const Login()),
+        MaterialPageRoute(
+          builder: (context) => const Login(),
+        ),
         (route) => false);
   }
 }

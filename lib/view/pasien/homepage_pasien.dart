@@ -34,6 +34,32 @@ class _HomePagePasienState extends State<HomePagePasien> {
     getUser();
   }
 
+  showDialogExitToApp() {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: const Text(titleLogout),
+          content: const Text(contentLogout),
+          actions: [
+            TextButton(
+              onPressed: () => auth.signOut(context),
+              child: Text(
+                textYa.toUpperCase(),
+              ),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                textTidak.toUpperCase(),
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
+
   Future<UserModel?> getUser() async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -67,6 +93,15 @@ class _HomePagePasienState extends State<HomePagePasien> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(titleHome),
+        actions: [
+          IconButton(
+            onPressed: showDialogExitToApp,
+            icon: const Icon(
+              Icons.exit_to_app,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       drawer: homeDrawer(),
       body: SizedBox(
