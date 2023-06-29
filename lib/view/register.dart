@@ -3,6 +3,7 @@ import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/login.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
@@ -371,7 +372,7 @@ class _RegisterState extends State<Register> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => const Register(),
+                  builder: (_) => const Login(),
                 ),
               );
             },

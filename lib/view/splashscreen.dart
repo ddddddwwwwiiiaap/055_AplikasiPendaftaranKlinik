@@ -1,6 +1,7 @@
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/login.dart';
 import 'package:aplikasipendaftaranklinik/view/register.dart';
 import 'package:flutter/material.dart';
 
@@ -117,7 +118,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => const Register(),
+            builder: (_) => const Login(),
           ),
         );
       },
