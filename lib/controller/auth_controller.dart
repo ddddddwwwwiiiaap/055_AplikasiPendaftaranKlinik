@@ -1,7 +1,7 @@
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
-import 'package:aplikasipendaftaranklinik/view/register.dart';
+import 'package:aplikasipendaftaranklinik/view/role.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -144,7 +144,7 @@ class AuthController {
         // ignore: use_build_context_synchronously
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const Register()),
+          MaterialPageRoute(builder: (context) => const Role()),
           (route) => false,
         );
         return currentUser;
