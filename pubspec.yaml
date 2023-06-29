@@ -67,7 +67,12 @@ flutter:
   - assets/image/logo.png
   - assets/image/line.png
   - assets/image/double_doctor.png
-  
+  - assets/image/profil.png
+  - assets/image/vector.png
+  - assets/image/home_doctor.png
+
+  - assets/icon/icon_home.png
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
