@@ -65,6 +65,8 @@ flutter:
   assets:
   - assets/image/clock.png
   - assets/image/logo.png
+  - assets/image/line.png
+  - assets/image/double_doctor.png
   
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
