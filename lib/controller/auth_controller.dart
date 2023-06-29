@@ -158,4 +158,34 @@ class AuthController {
     }
     return null;
   }
+
+  Future<UserModel?> getUser() async {
+    final User? user = auth.currentUser;
+    if (user != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .where('uId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+          .get()
+          .then(
+        (result) {
+          if (result.docs.isNotEmpty) {
+            final UserModel currentUser = UserModel(
+              uId: user.uid,
+              nama: result.docs[0].data()['nama'],
+              email: user.email ?? '',
+              role: result.docs[0].data()['role'],
+              nomorhp: result.docs[0].data()['nomorhp'],
+              jekel: result.docs[0].data()['jekel'],
+              tglLahir: result.docs[0].data()['tglLahir'],
+              alamat: result.docs[0].data()['alamat'],
+              noAntrian: result.docs[0].data()['noAntrian'],
+              poli: result.docs[0].data()['poli'],
+            );
+            return currentUser;
+          }
+        },
+      );
+    }
+    return null;
+  }
 }
