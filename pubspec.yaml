@@ -70,6 +70,8 @@ flutter:
   - assets/image/profil.png
   - assets/image/vector.png
   - assets/image/home_doctor.png
+  - assets/image/hospital.png
+  - assets/image/suster.png
 
   - assets/icon/icon_home.png
 

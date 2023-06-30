@@ -1,6 +1,6 @@
 import 'package:aplikasipendaftaranklinik/controller/auth_controller.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/homepage_admin.dart';
 import 'package:aplikasipendaftaranklinik/view/pasien/homepage_pasien.dart';
-import 'package:aplikasipendaftaranklinik/view/register.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class _RoleState extends State<Role> {
           if (role.toString() == "pasien") {
             return const HomePagePasien();
           } else if (role.toString() == "admin") {
-            return const Register();
+            return const HomePageAdmin();
           }
 
           return const Scaffold(
