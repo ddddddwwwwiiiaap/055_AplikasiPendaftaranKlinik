@@ -22,4 +22,10 @@ class PoliController {
         PoliModel(uId: docId, namaPoli: pmmodel.namaPoli);
     await docref.update(poliModel.toMap());
   }
+
+    Future getPoli() async {
+    final poli = await poliCollection.get();
+    streamController.add(poli.docs);
+    return poli.docs;
+  }
 }
