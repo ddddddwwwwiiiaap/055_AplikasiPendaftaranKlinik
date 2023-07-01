@@ -269,6 +269,12 @@ class _PendaftaranState extends State<Pendaftaran> {
                                   namaPoli = newValue.toString();
                                 });
                               },
+                              validator: (value) {
+                                if (value == null || value.toString().isEmpty) {
+                                  return 'Pilih salah satu poli';
+                                }
+                                return null;
+                              },
                               items: snapshot.data!
                                   .map((value) => DropdownMenuItem(
                                         child: Text(value['namaPoli']),
