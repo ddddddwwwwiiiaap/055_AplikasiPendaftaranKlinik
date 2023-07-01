@@ -6,6 +6,7 @@ import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/pasien/jadwal_pemeriksaan.dart';
 import 'package:aplikasipendaftaranklinik/view/pasien/pendaftaran.dart';
 import 'package:aplikasipendaftaranklinik/view/pasien/profile_pasien.dart';
+import 'package:aplikasipendaftaranklinik/view/pasien/riwayat_pemeriksaan.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -210,6 +211,21 @@ class _HomePagePasienState extends State<HomePagePasien> {
             ),
             title: const Text(
               titleJadwalPemeriksaan,
+            ),
+          ),
+          ListTile(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => RiwayatPemeriksaanPages(
+                          uid: uId.toString(),
+                        ))),
+            leading: Image.asset(
+              "assets/icon/icon_history.png",
+              width: 24,
+            ),
+            title: const Text(
+              titleRiwayatPemeriksaan,
             ),
           ),
         ],
