@@ -28,4 +28,10 @@ class PoliController {
     streamController.add(poli.docs);
     return poli.docs;
   }
+
+  Future<void> updatePoli(PoliModel pmmodel) async {
+    final poli = pmmodel.toMap();
+
+    await poliCollection.doc(pmmodel.uId).update(poli);
+  }
 }
