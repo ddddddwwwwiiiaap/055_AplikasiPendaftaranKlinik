@@ -64,6 +64,12 @@ class _AddPoliState extends State<AddPoli> {
                             decoration: const InputDecoration(
                               labelText: 'Poli',
                             ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your name';
+                              }
+                              return null;
+                            },
                             onChanged: (value) => namaPoli = value,
                           ),
                           const SizedBox(
