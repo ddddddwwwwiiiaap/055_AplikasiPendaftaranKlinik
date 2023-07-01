@@ -74,11 +74,14 @@ flutter:
   - assets/image/home_doctor.png
   - assets/image/hospital.png
   - assets/image/suster.png
+  - assets/image/suster3.png
+
 
   - assets/icon/icon_home.png
   - assets/icon/icon_profile.png
   - assets/icon/icon_daftar_antrian.png
   - assets/icon/icon_history.png
+  - assets/icon/icon_jadwal_periksa.png
 
   - assets/ellipse/ellipse1.png
   #   - images/a_dot_burr.jpeg
