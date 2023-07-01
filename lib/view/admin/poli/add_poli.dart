@@ -1,5 +1,7 @@
 import 'package:aplikasipendaftaranklinik/controller/poli_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/poli_model.dart';
+import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/poli/poli.dart';
 import 'package:flutter/material.dart';
 
 class AddPoli extends StatefulWidget {
@@ -16,10 +18,10 @@ class _AddPoliState extends State<AddPoli> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      resizeToAvoidBottomInset: false, // untuk menghindari bottom overflowed
       appBar: AppBar(
-        title: const Text('Add Contact'),
+        title: const Text(textAddPoli),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -35,7 +37,6 @@ class _AddPoliState extends State<AddPoli> {
             child: Form(
               key: formKey,
               child: Column(
-                //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Card(
                     shape: RoundedRectangleBorder(
@@ -86,7 +87,7 @@ class _AddPoliState extends State<AddPoli> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const AddPoli(),
+                                      builder: (context) => const Poli(),
                                     ),
                                   );
                                 });

@@ -22,4 +22,6 @@ const String textNomorHP = "Nomor Handphone";
 const String textAlamat = "Alamat";
 const String textTglLahir = "Tanggal Lahir";
 const String textButtonSave = "Save";
+const String textPoli = "Poli List";
+const String textAddPoli = "Add Poli";
 const String titleSuccess = "Berhasil";
