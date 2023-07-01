@@ -28,3 +28,6 @@ const String titleSuccess = "Berhasil";
 const String titlePoli = "Poli";
 const String titleDaftarAntrian = "Daftar Antrian"; 
 const String titleRiwayatPasienMasuk = "Riwayat Pasien Masuk";
+const String textAmbilAntrian = "Ambil Antrian";
+const String textButtonDaftar = "Daftar";
+const String textInformasiDaftarAntrian = "kami akan mengirimkan pesan saat antrian anda telah mendekati waktu yang telah di tentukan. Mohon di tunggu kak.";
