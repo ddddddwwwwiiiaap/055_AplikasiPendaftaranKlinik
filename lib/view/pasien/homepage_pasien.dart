@@ -3,6 +3,7 @@ import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/pasien/profile_pasien.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +76,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
               email = result.docs[0].data()['email'];
               role = result.docs[0].data()['role'];
               nomorhp = result.docs[0].data()['nomorhp'];
-              tglLahir = result.docs[0].data()['tGLlahir'];
+              tglLahir = result.docs[0].data()['tglLahir'];
               alamat = result.docs[0].data()['alamat'];
               noAntrian = result.docs[0].data()['noantrian'];
               poli = result.docs[0].data()['poli'];
@@ -153,6 +154,30 @@ class _HomePagePasienState extends State<HomePagePasien> {
             ),
             title: const Text(
               titleHome,
+            ),
+          ),
+          ListTile(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ProfilePasien(
+                  uid: uId.toString(),
+                  nama: nama.toString(),
+                  email: email.toString(),
+                  role: role.toString(),
+                  nomorhp: nomorhp.toString(),
+                  tglLahir: tglLahir.toString(),
+                  alamat: alamat.toString(),
+                  isEdit: true,
+                ),
+              ),
+            ),
+            leading: Image.asset(
+              "assets/icon/icon_profile.png",
+              width: 24,
+            ),
+            title: const Text(
+              titleProfile,
             ),
           ),
         ],
