@@ -6,6 +6,7 @@ import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/daftar_antrian_a.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/poli/poli.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/profile_admin.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/riwayat_pasien_masuk.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -205,6 +206,20 @@ class _HomePageAdminState extends State<HomePageAdmin> {
             ),
             title: const Text(
               titleDaftarAntrian,
+            ),
+          ),
+          ListTile(
+            onTap: () => 
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const RiwayatPasienMasuk()),
+              ),
+            leading: Image.asset(
+              "assets/icon/icon_history.png",
+              width: 24,
+            ),
+            title: const Text(
+              titleRiwayatPasienMasuk,
             ),
           ),
         ],
