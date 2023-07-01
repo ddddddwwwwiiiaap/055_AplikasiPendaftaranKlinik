@@ -3,6 +3,7 @@ import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/homepage_admin.dart';
 import 'package:aplikasipendaftaranklinik/view/login.dart';
+import 'package:aplikasipendaftaranklinik/view/pasien/homepage_pasien.dart';
 import 'package:aplikasipendaftaranklinik/view/role.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -256,6 +257,68 @@ class AuthController {
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const HomePageAdmin()),
+              ),
+              child: const Text(
+                "OK",
+                style: TextStyle(color: colorPinkText),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<UserModel?> updateProfilePasien(
+      String nama,
+      String email,
+      String nomorHp,
+      String tglLahir,
+      String alamat,
+      BuildContext context) async {
+    if (isEdit) {
+      DocumentReference documentReference = FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser!.uid);
+
+      FirebaseFirestore.instance.runTransaction((transaction) async {
+        DocumentSnapshot snapshot = await transaction.get(documentReference);
+
+        if (snapshot.exists) {
+          await transaction.update(documentReference, {
+            'nama': nama,
+            'email': email,
+            'nomorhp': nomorHp,
+            'tglLahir': tglLahir,
+            'alamat': alamat,
+          });
+        }
+      });
+
+      infoUpdatePasien(context);
+    }
+    return null;
+  }
+
+  void infoUpdatePasien(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: const Text(titleSuccess),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Data Pribadi Anda Berhasil di Perbarui",
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePagePasien()),
               ),
               child: const Text(
                 "OK",
