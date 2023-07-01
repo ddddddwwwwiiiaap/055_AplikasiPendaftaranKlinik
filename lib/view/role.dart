@@ -13,7 +13,7 @@ class Role extends StatefulWidget {
 }
 
 class _RoleState extends State<Role> {
-  final authCtr = AuthController();
+  final authCtr = AuthController(isEdit: false);
 
   @override
   void initState() {

@@ -1,6 +1,7 @@
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/homepage_admin.dart';
 import 'package:aplikasipendaftaranklinik/view/login.dart';
 import 'package:aplikasipendaftaranklinik/view/role.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,6 +9,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthController {
+  final bool isEdit;
+  AuthController(
+      {Key? key,
+      required this.isEdit})
+      : super();
+
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
@@ -29,7 +37,6 @@ class AuthController {
           email: user.email ?? '',
           role: role,
           alamat: '',
-          jekel: '',
           nomorhp: '',
           tglLahir: '',
           noAntrian: 0,
@@ -136,7 +143,6 @@ class AuthController {
           email: user.email ?? '',
           role: snapshot['role'],
           alamat: snapshot['alamat'],
-          jekel: snapshot['jekel'],
           nomorhp: snapshot['nomorhp'],
           tglLahir: snapshot['tglLahir'],
           noAntrian: snapshot['noAntrian'],
@@ -176,7 +182,6 @@ class AuthController {
               email: user.email ?? '',
               role: result.docs[0].data()['role'],
               nomorhp: result.docs[0].data()['nomorhp'],
-              jekel: result.docs[0].data()['jekel'],
               tglLahir: result.docs[0].data()['tglLahir'],
               alamat: result.docs[0].data()['alamat'],
               noAntrian: result.docs[0].data()['noAntrian'],
@@ -199,5 +204,67 @@ class AuthController {
           builder: (context) => const Login(),
         ),
         (route) => false);
+  }
+
+  Future<UserModel?> updateProfileAdmin(
+      String nama,
+      String email,
+      String nomorHp,
+      String tglLahir,
+      String alamat,
+      BuildContext context) async {
+    if (isEdit) {
+      DocumentReference documentReference = FirebaseFirestore.instance
+          .collection('users')
+          .doc(auth.currentUser!.uid);
+
+      FirebaseFirestore.instance.runTransaction((transaction) async {
+        DocumentSnapshot snapshot = await transaction.get(documentReference);
+
+        if (snapshot.exists) {
+          await transaction.update(documentReference, {
+            'nama': nama,
+            'email': email,
+            'nomorhp': nomorHp,
+            'tglLahir': tglLahir,
+            'alamat': alamat,
+          });
+        }
+      });
+
+      infoUpdate(context);
+    }
+    return null;
+  }
+
+  void infoUpdate(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: const Text(titleSuccess),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "Data Pribadi Anda Berhasil di Perbarui",
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePageAdmin()),
+              ),
+              child: const Text(
+                "OK",
+                style: TextStyle(color: colorPinkText),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

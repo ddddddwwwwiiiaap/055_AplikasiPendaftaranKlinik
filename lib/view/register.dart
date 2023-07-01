@@ -15,7 +15,7 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final formkey = GlobalKey<FormState>();
-  final authCtr = AuthController();
+  final authCtr = AuthController(isEdit: false);
   String? nama;
   String? email;
   String? password;
@@ -307,10 +307,12 @@ class _RegisterState extends State<Register> {
               nama!,
               role = 'pasien',
             );
+            // ignore: use_build_context_synchronously
             Navigator.pop(context);
             if (registeredUser != null) {
               signUpDialog();
             } else {
+              // ignore: use_build_context_synchronously
               showDialog(
                 context: context,
                 builder: (_) => AlertDialog(

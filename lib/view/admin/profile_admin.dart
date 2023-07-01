@@ -1,3 +1,4 @@
+import 'package:aplikasipendaftaranklinik/controller/auth_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
@@ -11,7 +12,6 @@ class ProfileAdmin extends StatefulWidget {
   String? email;
   String? role;
   String? nomorhp;
-  String? jekel;
   String? tglLahir;
   String? alamat;
   final bool isEdit;
@@ -22,7 +22,6 @@ class ProfileAdmin extends StatefulWidget {
       this.email,
       this.role,
       this.nomorhp,
-      this.jekel,
       this.tglLahir,
       this.alamat,
       required this.isEdit})
@@ -33,6 +32,7 @@ class ProfileAdmin extends StatefulWidget {
 }
 
 class _ProfileAdminState extends State<ProfileAdmin> {
+  var auth = AuthController(isEdit: true);
   String? uId;
   String? nama;
   String? email;
@@ -47,12 +47,6 @@ class _ProfileAdminState extends State<ProfileAdmin> {
   final TextEditingController _tglLahir = TextEditingController();
   final TextEditingController _alamat = TextEditingController();
 
-  var selectedJekel = [
-    'Laki-laki',
-    'Perempuan',
-  ];
-
-  String? jekel;
   DateTime selectedDate = DateTime.now();
   String? setDate, setTime;
 
@@ -78,7 +72,6 @@ class _ProfileAdminState extends State<ProfileAdmin> {
         nama = widget.nama!;
         email = widget.email!;
         nomorhp = widget.nomorhp!;
-        jekel = widget.jekel!;
         tglLahir = widget.tglLahir!;
         alamat = widget.alamat!;
         _nama.text = widget.nama!;
@@ -105,6 +98,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
             children: [
               buildHeader(size),
               buildFormProfile(size),
+              buildButtonSave()
             ],
           ),
         ),
@@ -179,7 +173,9 @@ class _ProfileAdminState extends State<ProfileAdmin> {
             margin: const EdgeInsets.fromLTRB(16, 0, 16, 8),
             padding: const EdgeInsets.only(left: 4, bottom: 4),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: Colors.white),
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.white,
+            ),
             child: TextFormField(
               controller: _email,
               keyboardType: TextInputType.emailAddress,
@@ -206,12 +202,17 @@ class _ProfileAdminState extends State<ProfileAdmin> {
             margin: const EdgeInsets.fromLTRB(16, 0, 16, 8),
             padding: const EdgeInsets.only(left: 4, bottom: 4),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: Colors.white),
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.white,
+            ),
             child: TextFormField(
               controller: _nomorhp,
               keyboardType: TextInputType.phone,
               textInputAction: TextInputAction.next,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
               decoration: const InputDecoration(
                 labelText: textNomorHP,
               ),
@@ -232,8 +233,12 @@ class _ProfileAdminState extends State<ProfileAdmin> {
           const Padding(
             padding: EdgeInsets.only(left: 16, top: 4, bottom: 4),
             child: Text(
-              "Tanggal Lahir",
-              style: TextStyle(),
+              textTglLahir,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 99, 98, 98),
+              ),
             ),
           ),
           InkWell(
@@ -296,6 +301,44 @@ class _ProfileAdminState extends State<ProfileAdmin> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget buildButtonSave() {
+    return ElevatedButton(
+      onPressed: () async {
+        UserModel? profileAdmin = await auth.updateProfileAdmin(
+          nama!,
+          email!,
+          nomorhp!,
+          tglLahir!,
+          alamat!,
+          context,
+        );
+        if (profileAdmin != null) {}
+      },
+      style: ButtonStyle(
+        backgroundColor: const MaterialStatePropertyAll(colorButton),
+        shape: MaterialStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+        ),
+      ),
+      child: Container(
+        width: 120,
+        height: 40,
+        child: const Center(
+          child: Text(
+            textButtonSave,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+        ),
       ),
     );
   }

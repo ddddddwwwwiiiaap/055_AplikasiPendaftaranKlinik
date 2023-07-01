@@ -15,7 +15,7 @@ class HomePagePasien extends StatefulWidget {
 }
 
 class _HomePagePasienState extends State<HomePagePasien> {
-  var auth = AuthController();
+  var auth = AuthController(isEdit: false);
   String? uId;
   String? nama;
   String? email;
@@ -190,7 +190,10 @@ class _HomePagePasienState extends State<HomePagePasien> {
           Text(
             "Semoga Lekas Sembuh\n$nama",
             style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
           )
         ],
       ),

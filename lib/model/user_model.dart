@@ -7,7 +7,6 @@ class UserModel {
   String email;
   String role;
   String nomorhp;
-  String jekel;
   String tglLahir;
   String alamat;
   int noAntrian;
@@ -18,7 +17,6 @@ class UserModel {
     required this.email,
     required this.role,
     required this.nomorhp,
-    required this.jekel,
     required this.tglLahir,
     required this.alamat,
     required this.noAntrian,
@@ -32,7 +30,6 @@ class UserModel {
       'email': email,
       'role': role,
       'nomorhp': nomorhp,
-      'jekel': jekel,
       'tglLahir': tglLahir,
       'alamat': alamat,
       'noAntrian': noAntrian,
@@ -47,7 +44,6 @@ class UserModel {
       email: map['email'] as String,
       role: map['role'] as String,
       nomorhp: map['nomorhp'] as String,
-      jekel: map['jekel'] as String,
       tglLahir: map['tglLahir'] as String,
       alamat: map['alamat'] as String,
       noAntrian: map['noAntrian'] as int,

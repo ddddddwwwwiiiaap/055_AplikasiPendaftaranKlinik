@@ -18,14 +18,13 @@ class HomePageAdmin extends StatefulWidget {
 class _HomePageAdminState extends State<HomePageAdmin> {
   final Stream<QuerySnapshot> streamAntrianPasien =
       FirebaseFirestore.instance.collection('antrian pasien').snapshots();
-  var auth = AuthController();
+  var auth = AuthController(isEdit: false);
 
   String? uId;
   String? nama;
   String? email;
   String? role;
   String? nomorhp;
-  String? jekel;
   String? tglLahir;
   String? alamat;
 
@@ -160,15 +159,15 @@ class _HomePageAdminState extends State<HomePageAdmin> {
               context,
               MaterialPageRoute(
                 builder: (_) => ProfileAdmin(
-                    uid: uId.toString(),
-                    nama: nama.toString(),
-                    email: email.toString(),
-                    role: role.toString(),
-                    nomorhp: nomorhp.toString(),
-                    jekel: jekel.toString(),
-                    tglLahir: tglLahir.toString(),
-                    alamat: alamat.toString(),
-                    isEdit: true),
+                  uid: uId.toString(),
+                  nama: nama.toString(),
+                  email: email.toString(),
+                  role: role.toString(),
+                  nomorhp: nomorhp.toString(),
+                  tglLahir: tglLahir.toString(),
+                  alamat: alamat.toString(),
+                  isEdit: true,
+                ),
               ),
             ),
             leading: Image.asset(
@@ -202,7 +201,10 @@ class _HomePageAdminState extends State<HomePageAdmin> {
       child: Text(
         "$textWelcome\n\nTetap Semangat Admin\n$nama",
         style: const TextStyle(
-            fontSize: 20, color: colorPinkText, fontWeight: FontWeight.bold),
+          fontSize: 20,
+          color: colorPinkText,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -248,9 +250,10 @@ class _HomePageAdminState extends State<HomePageAdmin> {
                               Text(
                                 "${int.parse(totalAntrianPasien.toString())}",
                                 style: const TextStyle(
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.bold,
-                                    color: colorPinkText),
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                  color: colorPinkText,
+                                ),
                               ),
                               const Text(
                                 "Orang",
