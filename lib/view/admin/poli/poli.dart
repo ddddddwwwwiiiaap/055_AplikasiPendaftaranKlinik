@@ -2,6 +2,7 @@ import 'package:aplikasipendaftaranklinik/controller/poli_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/poli_model.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/poli/add_poli.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/poli/update_poli.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -81,7 +82,19 @@ class _PoliState extends State<Poli> {
                         return Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: InkWell(
-                            onLongPress: () {},
+                            onLongPress: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => UpdatePoli(
+                                    poliModel: PoliModel.fromMap(
+                                        data[index].data()
+                                            as Map<String, dynamic>),
+                                    contact: data[index],
+                                  ),
+                                ),
+                              );
+                            },
                             child: Card(
                               elevation: 10,
                               shadowColor: Colors.cyan,
