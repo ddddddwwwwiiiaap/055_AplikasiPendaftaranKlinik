@@ -6,6 +6,7 @@ const String titleError = "Error";
 const String titleHome = "Home";
 const String titleNoAntrian = "Nomor Antrian Anda";
 const String titleLogout = "Log out";
+const String titleProfile = "Profile";
 const String contentLogout = "Keluar dari Aplikasi?";
 
 const String textWelcome = "Selamat Datang,";
@@ -15,3 +16,8 @@ const String textDaftarRegister = "Belum Mempunyai Akun?";
 const String textEmail = "Email";
 const String textYa = "Ya";
 const String textTidak = "Tidak";
+const String textDeskripsiProfile = "Silahkan Lengkapi Data\nDiri Anda";
+const String textNama = "Nama";
+const String textNomorHP = "Nomor HP";
+const String textAlamat = "Alamat";
+const String textButtonSave = "Save";

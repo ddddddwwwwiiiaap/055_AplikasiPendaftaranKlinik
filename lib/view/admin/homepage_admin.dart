@@ -3,6 +3,7 @@ import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/profile_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -152,6 +153,30 @@ class _HomePageAdminState extends State<HomePageAdmin> {
             ),
             title: const Text(
               titleHome,
+            ),
+          ),
+          ListTile(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ProfileAdmin(
+                    uid: uId.toString(),
+                    nama: nama.toString(),
+                    email: email.toString(),
+                    role: role.toString(),
+                    nomorhp: nomorhp.toString(),
+                    jekel: jekel.toString(),
+                    tglLahir: tglLahir.toString(),
+                    alamat: alamat.toString(),
+                    isEdit: true),
+              ),
+            ),
+            leading: Image.asset(
+              "assets/icon/icon_profile.png",
+              width: 24,
+            ),
+            title: const Text(
+              titleProfile,
             ),
           ),
         ],
