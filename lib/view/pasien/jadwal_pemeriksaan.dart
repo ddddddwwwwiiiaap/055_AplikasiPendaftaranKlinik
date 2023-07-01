@@ -124,6 +124,36 @@ class _JadwalPemeriksaanPagesState extends State<JadwalPemeriksaanPages> {
                             Divider()
                           ],
                         ),
+                        trailing: IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Hapus Data"),
+                                  content: Text(
+                                      "Apakah Anda yakin ingin menghapus data ini?"),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      child: Text("Batal"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: Text("Hapus"),
+                                      onPressed: () {
+                                        jadwalPemeriksaanController.deleteData(data.id);
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
+                        ),
                       ),
                     );
                   }).toList(),
