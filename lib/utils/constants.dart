@@ -26,3 +26,4 @@ const String textPoli = "Poli List";
 const String textAddPoli = "Add Poli";
 const String titleSuccess = "Berhasil";
 const String titlePoli = "Poli";
+const String titleDaftarAntrian = "Daftar Antrian"; 
