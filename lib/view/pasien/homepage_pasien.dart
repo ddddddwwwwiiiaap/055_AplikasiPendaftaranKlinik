@@ -3,6 +3,7 @@ import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/pasien/jadwal_pemeriksaan.dart';
 import 'package:aplikasipendaftaranklinik/view/pasien/pendaftaran.dart';
 import 'package:aplikasipendaftaranklinik/view/pasien/profile_pasien.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -195,6 +196,20 @@ class _HomePagePasienState extends State<HomePagePasien> {
             ),
             title: const Text(
               titleDaftarAntrian,
+            ),
+          ),
+          ListTile(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) =>
+                        JadwalPemeriksaanPages(uid: uId.toString()))),
+            leading: Image.asset(
+              "assets/icon/icon_jadwal_periksa.png",
+              width: 24,
+            ),
+            title: const Text(
+              titleJadwalPemeriksaan,
             ),
           ),
         ],
