@@ -25,3 +25,4 @@ const String textButtonSave = "Save";
 const String textPoli = "Poli List";
 const String textAddPoli = "Add Poli";
 const String titleSuccess = "Berhasil";
+const String titlePoli = "Poli";

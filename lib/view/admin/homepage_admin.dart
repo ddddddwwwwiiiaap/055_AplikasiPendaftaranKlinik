@@ -3,6 +3,7 @@ import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/poli/poli.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/profile_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -176,6 +177,20 @@ class _HomePageAdminState extends State<HomePageAdmin> {
             ),
             title: const Text(
               titleProfile,
+            ),
+          ),
+          ListTile( 
+            onTap: () => 
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Poli()),
+              ),
+            leading: Image.asset(
+              "assets/icon/icon_daftar_antrian.png",
+              width: 24,
+            ),
+            title: const Text(
+              titlePoli,
             ),
           ),
         ],
