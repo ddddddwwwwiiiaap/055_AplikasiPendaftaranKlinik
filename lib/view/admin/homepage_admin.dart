@@ -187,7 +187,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
               MaterialPageRoute(builder: (context) => const Poli()),
             ),
             leading: Image.asset(
-              "assets/icon/icon_daftar_antrian.png",
+              "assets/icon/icon_poli.png",
               width: 24,
             ),
             title: const Text(

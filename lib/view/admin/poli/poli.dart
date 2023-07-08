@@ -26,6 +26,16 @@ class _PoliState extends State<Poli> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          textPoli,
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -38,34 +48,6 @@ class _PoliState extends State<Poli> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                color: Colors.pink,
-                height: 50,
-                width: double.infinity,
-                //buat teks ditengah dan gambar di kanan
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Image.network(
-                      'https://icon-library.com/images/clinic-icon/clinic-icon-28.jpg',
-                      height: 100,
-                      width: 100,
-                    ),
-                    const Text(
-                      textPoli,
-                      style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                    Image.network(
-                      'https://icon-library.com/images/clinic-icon/clinic-icon-28.jpg',
-                      height: 100,
-                      width: 100,
-                    ),
-                  ],
-                ),
-              ),
               Expanded(
                 child: StreamBuilder<List<DocumentSnapshot>>(
                   stream: pc.stream,
@@ -87,9 +69,8 @@ class _PoliState extends State<Poli> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => UpdatePoli(
-                                    poliModel: PoliModel.fromMap(
-                                        data[index].data()
-                                            as Map<String, dynamic>),
+                                    poliModel: PoliModel.fromMap(data[index]
+                                        .data() as Map<String, dynamic>),
                                     contact: data[index],
                                   ),
                                 ),
@@ -100,14 +81,16 @@ class _PoliState extends State<Poli> {
                               shadowColor: Colors.cyan,
                               child: ListTile(
                                 leading: CircleAvatar(
-                                    backgroundColor: Colors.pink,
-                                    child: Text(
-                                        data[index]['namaPoli']
-                                            .substring(0, 1)
-                                            .toUpperCase(),
-                                        style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold))),
+                                  backgroundColor: Colors.pink,
+                                  child: Text(
+                                    data[index]['namaPoli']
+                                        .substring(0, 1)
+                                        .toUpperCase(),
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                                 title: Text(data[index]['namaPoli']),
                               ),
                             ),
