@@ -81,7 +81,7 @@ class _JadwalPemeriksaanPagesState extends State<JadwalPemeriksaanPages> {
                                 children: [
                                   Text("No. Antrian"),
                                   Text(
-                                    "${data['noantrian']}",
+                                    "${data['noAntrian']}",
                                     style: TextStyle(
                                         color: colorPinkText,
                                         fontWeight: FontWeight.bold),

@@ -10,7 +10,7 @@ class PendaftaranController {
   String? uId;
   String? nama;
   var poliController = PoliController();
-  String? noantrian;
+  String? noAntrian;
   String? status;
   String? namaPoli;
 

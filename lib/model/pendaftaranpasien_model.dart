@@ -3,14 +3,14 @@ import 'dart:convert';
 
 class PendaftaranPasienModel {
   String? uId;
-  int noantrian;
+  int noAntrian;
   String status;
   String waktuantrian;
   String tanggalantrian;
   String poli;
   PendaftaranPasienModel({
     this.uId,
-    required this.noantrian,
+    required this.noAntrian,
     required this.status,
     required this.waktuantrian,
     required this.tanggalantrian,
@@ -20,7 +20,7 @@ class PendaftaranPasienModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'uId': uId,
-      'noantrian': noantrian,
+      'noAntrian': noAntrian,
       'status': status,
       'waktuantrian': waktuantrian,
       'tanggalantrian': tanggalantrian,
@@ -31,7 +31,7 @@ class PendaftaranPasienModel {
   factory PendaftaranPasienModel.fromMap(Map<String, dynamic> map) {
     return PendaftaranPasienModel(
       uId: map['uId'] != null ? map['uId'] as String : null,
-      noantrian: map['noantrian'] as int,
+      noAntrian: map['noAntrian'] as int,
       status: map['status'] as String,
       waktuantrian: map['waktuantrian'] as String,
       tanggalantrian: map['tanggalantrian'] as String,

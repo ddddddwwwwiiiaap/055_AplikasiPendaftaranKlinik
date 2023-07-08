@@ -86,7 +86,7 @@ class _RiwayatPemeriksaanPagesState extends State<RiwayatPemeriksaanPages> {
                               children: [
                                 Text("No. Antrian"),
                                 Text(
-                                  "${data['noantrian']}",
+                                  "${data['noAntrian']}",
                                   style: TextStyle(
                                     color: colorPinkText,
                                     fontWeight: FontWeight.bold,

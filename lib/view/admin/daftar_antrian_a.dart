@@ -121,7 +121,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
         'tanggal antrian': tglAntrian.toString(),
         'waktu antrian': waktuAntrian.toString(),
         'selesai antrian': timeNow,
-        'noantrian': noAntrian,
+        'noAntrian': noAntrian,
         'status': _selectedStatusAntrian.toString()
       });
     } catch (e) {
@@ -140,7 +140,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
 
       if (documentSnapshot.exists) {
         transaction.update(documentReference, <String, dynamic>{
-          'noantrian': noAntrian,
+          'noAntrian': noAntrian,//berf
         });
       }
     });
@@ -230,7 +230,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
                                 children: [
                                   Text("No. Antrian"),
                                   Text(
-                                    "${data['noantrian']}",
+                                    "${data['noAntrian']}",
                                     style: TextStyle(
                                         color: colorPinkText,
                                         fontWeight: FontWeight.bold),
@@ -282,7 +282,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
                                     onTap: () => showEditStatus(
                                       data['doc id'],
                                       data['nama pasien'],
-                                      data['noantrian'],
+                                      data['noAntrian'],
                                       data['poli'],
                                       data['status'],
                                       data['tanggal antrian'],
