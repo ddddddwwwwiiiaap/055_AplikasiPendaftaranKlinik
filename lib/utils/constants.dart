@@ -33,3 +33,5 @@ const String textButtonDaftar = "Daftar";
 const String textInformasiDaftarAntrian = "kami akan mengirimkan pesan saat antrian anda telah mendekati waktu yang telah di tentukan. Mohon di tunggu kak.";
 const String titleJadwalPemeriksaan = "Jadwal Pemeriksaan";
 const String titleRiwayatPemeriksaan = "Riwayat Pemeriksaan";
+const String textButtonLihatAntrian = "Lihat Antrian";
+const String textButtonAntrian = "Silahkan Mengambil\nNomor Antrian Anda";
