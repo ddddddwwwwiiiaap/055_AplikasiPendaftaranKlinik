@@ -48,6 +48,7 @@ class _AntrianPagesState extends State<AntrianPages> {
             buildItemAntrian(size),
             buildEllipse(),
             buildTextInformasi(size),
+            buildImage(),
           ],
         ),
       ),
@@ -228,6 +229,25 @@ class _AntrianPagesState extends State<AntrianPages> {
                   textAlign: TextAlign.center,
                 ),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildImage() {
+    return Positioned(
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 240, left: 40),
+                child: Image.asset("assets/image/suster3.png"),
+              )
             ],
           ),
         ),
