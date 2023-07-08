@@ -117,6 +117,9 @@ class _HomePagePasienState extends State<HomePagePasien> {
             buildHeader(size),
             buildTitleHeader(),
             buildIconHome(),
+            noAntrian == 0
+                ? buildButtonAmbilNoAntrian()
+                : buildButtonLihatAntrian(size)
           ],
         ),
       ),
@@ -289,6 +292,48 @@ class _HomePagePasienState extends State<HomePagePasien> {
           margin: const EdgeInsets.only(bottom: 90),
           child: Image.asset("assets/image/home_doctor.png"),
         ),
+      ),
+    );
+  }
+
+  Widget buildButtonAmbilNoAntrian() {
+    return Positioned(
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 90),
+          child: ElevatedButton(
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => Pendaftaran(
+                            uId: uId.toString(),
+                            nama: nama.toString(),
+                          ))),
+              style: ButtonStyle(
+                  backgroundColor:
+                      const MaterialStatePropertyAll(colorButtonHome),
+                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24)))),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 40),
+                child: Text(
+                  textButtonAntrian,
+                  style: TextStyle(
+                    color: colorPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )),
+        ),
+      ),
+    );
+  }
+
+  Widget buildButtonLihatAntrian(Size size) {
+    return Positioned(
+      child: Align(
       ),
     );
   }
