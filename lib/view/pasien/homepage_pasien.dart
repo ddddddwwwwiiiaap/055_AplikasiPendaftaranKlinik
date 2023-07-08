@@ -82,7 +82,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
               nomorhp = result.docs[0].data()['nomorhp'];
               tglLahir = result.docs[0].data()['tglLahir'];
               alamat = result.docs[0].data()['alamat'];
-              noAntrian = result.docs[0].data()['noantrian'];
+              noAntrian = result.docs[0].data()['noAntrian'];
               poli = result.docs[0].data()['poli'];
             },
           );
