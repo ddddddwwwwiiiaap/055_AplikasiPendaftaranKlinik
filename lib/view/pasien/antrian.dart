@@ -50,6 +50,7 @@ class _AntrianPagesState extends State<AntrianPages> {
             buildTextInformasi(size),
             buildImage(),
             buildEllipseBottom1(),
+            buildEllipseBottom2()
           ],
         ),
       ),
@@ -264,6 +265,21 @@ class _AntrianPagesState extends State<AntrianPages> {
           child: Stack(
             children: [
               Image.asset("assets/ellipse/ellipse6.png"),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildEllipseBottom2() {
+    return Positioned(
+      child: Align(
+        alignment: Alignment.bottomRight,
+        child: Container(
+          child: Stack(
+            children: [
+              Image.asset("assets/ellipse/ellipse7.png"),
             ],
           ),
         ),
