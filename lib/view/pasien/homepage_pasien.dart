@@ -334,6 +334,66 @@ class _HomePagePasienState extends State<HomePagePasien> {
   Widget buildButtonLihatAntrian(Size size) {
     return Positioned(
       child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+                margin: const EdgeInsets.only(bottom: 120),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Image.asset("assets/ellipse/ellipse8.png"),
+                    Image.asset("assets/image/suster.png"),
+                  ],
+                )),
+            Container(
+                width: size.width / 1.4,
+                margin: const EdgeInsets.only(bottom: 160),
+                child: const Row(
+                  children: [
+                    Text(
+                      titleNoAntrian,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
+            Container(
+                width: size.width / 2.5,
+                margin: const EdgeInsets.only(bottom: 80),
+                child: Row(
+                  children: [
+                    Text(
+                      noAntrian == null ? "" : "$noAntrian",
+                      style:
+                          const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
+            Container(
+              margin: const EdgeInsets.only(top: 120),
+              child: ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      backgroundColor:
+                          const MaterialStatePropertyAll(colorButtonHome),
+                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24)))),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 40),
+                    child: Text(
+                      textButtonLihatAntrian,
+                      style: TextStyle(
+                        color: colorPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )),
+            ),
+          ],
+        ),
       ),
     );
   }
