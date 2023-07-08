@@ -27,7 +27,7 @@ class _AntrianPagesState extends State<AntrianPages> {
         .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        noAntrianSedangDilayani = doc['noantrian'];
+        noAntrianSedangDilayani = doc['noAntrian'];
       });
     });
   }
@@ -60,30 +60,32 @@ class _AntrianPagesState extends State<AntrianPages> {
   Widget buildItemAntrian(Size size) {
     return Column(
       children: [
-        Container(
-          margin: const EdgeInsets.fromLTRB(16, 24, 16, 10),
-          width: size.width,
-          height: size.height / 5,
-          decoration: BoxDecoration(
-              color: colorPrimary,
-              borderRadius: const BorderRadius.all(Radius.circular(12))),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text(
-                textSedangDilayani,
-                style: TextStyle(fontSize: 18, color: Colors.white),
-              ),
-              Text(
-                "${widget.noAntrian}",
-                style: const TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              )
-            ],
+        
+          Container(
+            margin: const EdgeInsets.fromLTRB(16, 24, 16, 10),
+            width: size.width,
+            height: size.height / 5,
+            decoration: BoxDecoration(
+                color: colorPrimary,
+                borderRadius: const BorderRadius.all(Radius.circular(12))),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Text(
+                  textSedangDilayani,
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                Text(
+                  "${widget.noAntrian}",
+                  style: const TextStyle(
+                      fontSize: 60,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                )
+              ],
+            ),
           ),
-        ),
+        
         Row(
           children: [
             Container(
@@ -224,13 +226,12 @@ class _AntrianPagesState extends State<AntrianPages> {
           child: const Stack(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: 140),
-                child: Text(
-                  textInformasiAntrian,
-                  style: TextStyle(fontSize: 12),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+                  padding: EdgeInsets.only(top: 140),
+                  child: Text(
+                    textInformasiAntrian,
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  )),
             ],
           ),
         ),
