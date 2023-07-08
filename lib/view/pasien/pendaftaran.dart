@@ -33,7 +33,7 @@ class _PendaftaranState extends State<Pendaftaran> {
   String? hour, minute, time;
   TimeOfDay selectedTime = const TimeOfDay(hour: 00, minute: 00);
 
-  int? noantrian;
+  int? noAntrian;
   String? status;
   final TextEditingController tanggalantrian = TextEditingController();
   final TextEditingController waktuantrian = TextEditingController();
@@ -106,7 +106,7 @@ class _PendaftaranState extends State<Pendaftaran> {
           'poli': namaPoli.toString(),
           'tanggal antrian': tanggalantrian.text,
           'waktu antrian': waktuantrian.text,
-          'noantrian': docUserAntrianCount.length + 1
+          'noAntrian': docUserAntrianCount.length + 1
         });
 
         QuerySnapshot docAntrianPasien =
@@ -123,7 +123,7 @@ class _PendaftaranState extends State<Pendaftaran> {
           'poli': namaPoli.toString(),
           'tanggal antrian': tanggalantrian.text,
           'waktu antrian': waktuantrian.text,
-          'noantrian': docAntrianPasienCount.length + 1,
+          'noAntrian': docAntrianPasienCount.length + 1,
           'status': 'Menunggu'
         });
         updateDataUsers();
@@ -145,7 +145,7 @@ class _PendaftaranState extends State<Pendaftaran> {
 
       if (documentSnapshot.exists) {
         transaction.update(documentReference, <String, dynamic>{
-          'noantrian': FieldValue.increment(1),
+          'noAntrian': FieldValue.increment(1),
           'poli': namaPoli.toString()
         });
       }
