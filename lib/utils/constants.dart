@@ -40,3 +40,4 @@ const String textSedangDilayani = "Sedang Dilayani";
 const String textNoAntrian = "Antrian Anda";
 const String textSisaAntrian = "Sisa Antrian";
 const String textJumlahPendaftar = "Jumlah Pendaftar";
+const String textInformasiAntrian = "Mohon membawa kartu identitas, beserta kartu kontrol anda.";
