@@ -11,11 +11,7 @@ import 'package:flutter/material.dart';
 
 class AuthController {
   final bool isEdit;
-  AuthController(
-      {Key? key,
-      required this.isEdit})
-      : super();
-
+  AuthController({Key? key, required this.isEdit}) : super();
 
   final FirebaseAuth auth = FirebaseAuth.instance;
   final CollectionReference userCollection =
@@ -60,7 +56,10 @@ class AuthController {
       content: const Text("Maaf, User Tidak Ditemukan!"),
       actions: [
         TextButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Login()),
+          ),
           child: const Text(
             "OK",
             style: TextStyle(color: colorPinkText),
@@ -128,12 +127,12 @@ class AuthController {
       String email, String password, BuildContext context) async {
     showAlertDialogLoading(context);
     try {
-      final UserCredential userCredential = //untuk
+      final UserCredential userCredential =
           await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      final User? user = userCredential.user; //untuk
+      final User? user = userCredential.user;
 
       if (user != null) {
         final DocumentSnapshot snapshot =
