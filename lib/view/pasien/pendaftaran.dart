@@ -187,7 +187,7 @@ class _PendaftaranState extends State<Pendaftaran> {
                   onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => HomePagePasien()),
+                            builder: (context) => const HomePagePasien()),
                       ),
                   child: const Text(
                     'OK',
@@ -222,12 +222,16 @@ class _PendaftaranState extends State<Pendaftaran> {
 
   Widget buildTextTitle() {
     return Container(
-        margin: const EdgeInsets.symmetric(vertical: 40),
-        child: Text(textAmbilAntrian,
-            style: TextStyle(
-                color: colorPrimary,
-                fontSize: 18,
-                fontWeight: FontWeight.bold)));
+      margin: const EdgeInsets.symmetric(vertical: 40),
+      child: Text(
+        textAmbilAntrian,
+        style: TextStyle(
+          color: colorPrimary,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
   }
 
   Widget buildFormAmbilAntrian(Size size) {
@@ -392,13 +396,13 @@ class _PendaftaranState extends State<Pendaftaran> {
     return ElevatedButton(
         onPressed: createAntrianPoli,
         style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll(colorButton),
+            backgroundColor: const MaterialStatePropertyAll(colorButton),
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(24)))),
         child: Container(
             width: 120,
             height: 40,
-            child: Center(
+            child: const Center(
                 child: Text(
               textButtonDaftar,
               style: TextStyle(
