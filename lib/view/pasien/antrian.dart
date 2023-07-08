@@ -46,6 +46,7 @@ class _AntrianPagesState extends State<AntrianPages> {
         child: Stack(
           children: [
             buildItemAntrian(size),
+            buildEllipse(),
           ],
         ),
       ),
@@ -55,32 +56,30 @@ class _AntrianPagesState extends State<AntrianPages> {
   Widget buildItemAntrian(Size size) {
     return Column(
       children: [
-        
-          Container(
-            margin: const EdgeInsets.fromLTRB(16, 24, 16, 10),
-            width: size.width,
-            height: size.height / 5,
-            decoration: BoxDecoration(
-                color: colorPrimary,
-                borderRadius: const BorderRadius.all(Radius.circular(12))),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const Text(
-                  textSedangDilayani,
-                  style: TextStyle(fontSize: 18, color: Colors.white),
-                ),
-                Text(
-                  "${widget.noAntrian}",
-                  style: const TextStyle(
-                      fontSize: 60,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                )
-              ],
-            ),
+        Container(
+          margin: const EdgeInsets.fromLTRB(16, 24, 16, 10),
+          width: size.width,
+          height: size.height / 5,
+          decoration: BoxDecoration(
+              color: colorPrimary,
+              borderRadius: const BorderRadius.all(Radius.circular(12))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Text(
+                textSedangDilayani,
+                style: TextStyle(fontSize: 18, color: Colors.white),
+              ),
+              Text(
+                "${widget.noAntrian}",
+                style: const TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              )
+            ],
           ),
-        
+        ),
         Row(
           children: [
             Container(
@@ -189,6 +188,25 @@ class _AntrianPagesState extends State<AntrianPages> {
           ],
         )
       ],
+    );
+  }
+
+  Widget buildEllipse() {
+    return Positioned(
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 140),
+                child: Image.asset("assets/ellipse/ellipse5.png"),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
