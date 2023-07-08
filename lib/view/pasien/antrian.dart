@@ -47,6 +47,7 @@ class _AntrianPagesState extends State<AntrianPages> {
           children: [
             buildItemAntrian(size),
             buildEllipse(),
+            buildTextInformasi(size),
           ],
         ),
       ),
@@ -202,6 +203,30 @@ class _AntrianPagesState extends State<AntrianPages> {
               Padding(
                 padding: const EdgeInsets.only(top: 140),
                 child: Image.asset("assets/ellipse/ellipse5.png"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildTextInformasi(Size size) {
+    return Positioned(
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Container(
+          width: size.width / 2,
+          padding: const EdgeInsets.all(16),
+          child: const Stack(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 140),
+                child: Text(
+                  textInformasiAntrian,
+                  style: TextStyle(fontSize: 12),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ],
           ),
