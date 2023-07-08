@@ -3,6 +3,7 @@ import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/pasien/antrian.dart';
 import 'package:aplikasipendaftaranklinik/view/pasien/jadwal_pemeriksaan.dart';
 import 'package:aplikasipendaftaranklinik/view/pasien/pendaftaran.dart';
 import 'package:aplikasipendaftaranklinik/view/pasien/profile_pasien.dart';
@@ -374,7 +375,11 @@ class _HomePagePasienState extends State<HomePagePasien> {
             Container(
               margin: const EdgeInsets.only(top: 120),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => AntrianPages(
+                              noAntrian: noAntrian, poli: poli))),
                   style: ButtonStyle(
                       backgroundColor:
                           const MaterialStatePropertyAll(colorButtonHome),
