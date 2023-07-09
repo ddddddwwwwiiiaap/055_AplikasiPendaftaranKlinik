@@ -328,7 +328,6 @@ class _PendaftaranState extends State<Pendaftaran> {
                         ),
                         InkWell(
                           onTap: () {
-                            _selectDate(context);
                           },
                           child: Container(
                             width: size.width,
