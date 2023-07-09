@@ -1,6 +1,7 @@
 import 'package:aplikasipendaftaranklinik/controller/riwayat_pemeriksaan_controller.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/pasien/homepage_pasien.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,17 @@ class _RiwayatPemeriksaanPagesState extends State<RiwayatPemeriksaanPages> {
     return Scaffold(
       backgroundColor: colorHome,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePagePasien(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: Text(titleRiwayatPemeriksaan),
       ),
       body: SizedBox(

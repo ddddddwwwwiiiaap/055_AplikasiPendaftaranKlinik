@@ -41,9 +41,27 @@ class _LoginState extends State<Login> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: colorPrimary,
-      body: SizedBox(
+      body: Container(
         width: size.width,
         height: size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              colorPrimary[50]!,
+              colorPrimary[100]!,
+              colorPrimary[200]!,
+              colorPrimary[300]!,
+              colorPrimary[400]!,
+              colorPrimary[500]!,
+              colorPrimary[600]!,
+              colorPrimary[700]!,
+              colorPrimary[800]!,
+              colorPrimary[900]!,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
@@ -119,7 +137,7 @@ class _LoginState extends State<Login> {
                   border: InputBorder.none,
                   hintText: textEmail,
                 ),
-                validator:(value) {
+                validator: (value) {
                   if (value!.isEmpty) {
                     return 'Email tidak boleh kosong';
                   } else if (!value.contains('@')) {

@@ -1,6 +1,9 @@
 import 'package:aplikasipendaftaranklinik/controller/poli_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/poli_model.dart';
+import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
+import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/homepage_admin.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/poli/add_poli.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/poli/update_poli.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,6 +30,18 @@ class _PoliState extends State<Poli> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //membuat action button dibagian kiri atas
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePageAdmin(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: const Text(
           textPoli,
           style: TextStyle(
@@ -39,9 +54,20 @@ class _PoliState extends State<Poli> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.purple.shade100, Colors.pink.shade300],
+            colors: [
+              colorPrimary[50]!,
+              colorPrimary[100]!,
+              colorPrimary[200]!,
+              colorPrimary[300]!,
+              colorPrimary[400]!,
+              colorPrimary[500]!,
+              colorPrimary[600]!,
+              colorPrimary[700]!,
+              colorPrimary[800]!,
+              colorPrimary[900]!,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         child: SafeArea(
@@ -65,13 +91,13 @@ class _PoliState extends State<Poli> {
                           padding: const EdgeInsets.all(5.0),
                           child: InkWell(
                             onLongPress: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => UpdatePoli(
                                     poliModel: PoliModel.fromMap(data[index]
                                         .data() as Map<String, dynamic>),
-                                    contact: data[index],
+                                    poli: data[index],
                                   ),
                                 ),
                               );
@@ -81,7 +107,7 @@ class _PoliState extends State<Poli> {
                               shadowColor: Colors.cyan,
                               child: ListTile(
                                 leading: CircleAvatar(
-                                  backgroundColor: Colors.pink,
+                                  backgroundColor: colorPrimary,
                                   child: Text(
                                     data[index]['namaPoli']
                                         .substring(0, 1)
@@ -92,6 +118,51 @@ class _PoliState extends State<Poli> {
                                   ),
                                 ),
                                 title: Text(data[index]['namaPoli']),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.delete),
+                                  color: Colors.red,
+                                  onPressed: () {
+                                    //buat dialog delete data
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: const Text('Delete Data!'),
+                                          content: const Text(
+                                              'Are you sure want to delete this data?'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text('Cancel'),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                pc.poliCollection
+                                                    .doc(data[index].id)
+                                                    .delete();
+                                                pc.getPoli();
+                                                Navigator.pop(context);
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  const SnackBar(
+                                                    content: Text(
+                                                        'Data has been deleted'),
+                                                    duration:
+                                                        Duration(seconds: 1),
+                                                    backgroundColor: Colors.red,
+                                                  ),
+                                                );
+                                              },
+                                              child: const Text('Delete'),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),
@@ -100,20 +171,21 @@ class _PoliState extends State<Poli> {
                     );
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => const AddPoli(),
             ),
           );
         },
+        backgroundColor: colorButton,
         child: const Icon(Icons.add),
       ),
     );

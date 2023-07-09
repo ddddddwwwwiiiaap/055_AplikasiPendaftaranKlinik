@@ -107,9 +107,27 @@ class _RegisterState extends State<Register> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: colorPrimary,
-      body: SizedBox(
+      body: Container(
         width: size.width,
         height: size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              colorPrimary[50]!,
+              colorPrimary[100]!,
+              colorPrimary[200]!,
+              colorPrimary[300]!,
+              colorPrimary[400]!,
+              colorPrimary[500]!,
+              colorPrimary[600]!,
+              colorPrimary[700]!,
+              colorPrimary[800]!,
+              colorPrimary[900]!,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(

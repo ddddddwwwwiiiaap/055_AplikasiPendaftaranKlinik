@@ -1,4 +1,6 @@
+import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/homepage_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -20,12 +22,42 @@ class _RiwayatPasienMasukState extends State<RiwayatPasienMasuk> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text(titleRiwayatPasienMasuk),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePageAdmin(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+        title: const Text(titleRiwayatPasienMasuk),
       ),
-      body: SizedBox(
-          width: size.width,
-          height: size.height,
-          child: buildListRiwayat(size)),
+      body: Container(
+        width: size.width,
+        height: size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              colorPrimary[50]!,
+              colorPrimary[100]!,
+              colorPrimary[200]!,
+              colorPrimary[300]!,
+              colorPrimary[400]!,
+              colorPrimary[500]!,
+              colorPrimary[600]!,
+              colorPrimary[700]!,
+              colorPrimary[800]!,
+              colorPrimary[900]!,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: buildListRiwayat(size),
+      ),
     );
   }
 

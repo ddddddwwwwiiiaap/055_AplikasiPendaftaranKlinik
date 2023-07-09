@@ -106,9 +106,27 @@ class _HomePageAdminState extends State<HomePageAdmin> {
         ],
       ),
       drawer: homeDrawer(),
-      body: SizedBox(
+      body: Container(
         width: size.width,
         height: size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              colorPrimary[50]!,
+              colorPrimary[100]!,
+              colorPrimary[200]!,
+              colorPrimary[300]!,
+              colorPrimary[400]!,
+              colorPrimary[500]!,
+              colorPrimary[600]!,
+              colorPrimary[700]!,
+              colorPrimary[800]!,
+              colorPrimary[900]!,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         child: Stack(
           children: [
             buildIconHome(),
@@ -143,7 +161,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => const HomePageAdmin(),
@@ -158,10 +176,10 @@ class _HomePageAdminState extends State<HomePageAdmin> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (_) => ProfileAdmin(
+                builder: (context) => ProfileAdmin(
                   uid: uId.toString(),
                   nama: nama.toString(),
                   email: email.toString(),
@@ -182,7 +200,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => const Poli()),
             ),
@@ -195,7 +213,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) => const DaftarAntrianPagesAdmin()),
@@ -209,11 +227,11 @@ class _HomePageAdminState extends State<HomePageAdmin> {
             ),
           ),
           ListTile(
-            onTap: () => 
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const RiwayatPasienMasuk()),
-              ),
+            onTap: () => Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const RiwayatPasienMasuk()),
+            ),
             leading: Image.asset(
               "assets/icon/icon_history.png",
               width: 24,
@@ -272,7 +290,9 @@ class _HomePageAdminState extends State<HomePageAdmin> {
                   const Text(
                     "Jumlah Pasien Hari ini : ",
                     style: TextStyle(
-                        color: colorPinkText, fontWeight: FontWeight.bold),
+                      color: colorPinkText,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   StreamBuilder<QuerySnapshot>(
                     stream: streamAntrianPasien,

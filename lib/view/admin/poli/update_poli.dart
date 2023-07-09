@@ -8,8 +8,8 @@ class UpdatePoli extends StatefulWidget {
   PoliModel poliModel;
   UpdatePoli({
     Key? key,
-    required DocumentSnapshot<Object?> contact,
     required this.poliModel,
+    required DocumentSnapshot<Object?> poli,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,18 @@ class _UpdatePoliState extends State<UpdatePoli> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Update Contact'),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Poli(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+        title: const Text('Update Poli'),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -74,7 +85,7 @@ class _UpdatePoliState extends State<UpdatePoli> {
                             decoration: const InputDecoration(
                               labelText: 'Nama Poli',
                             ),
-                            validator:(value) {
+                            validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter name';
                               }
@@ -86,7 +97,7 @@ class _UpdatePoliState extends State<UpdatePoli> {
                             height: 20,
                           ),
                           ElevatedButton(
-                            child: const Text('Update Contact'),
+                            child: const Text('Update Poli'),
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
                                 PoliModel cm = PoliModel(
@@ -96,12 +107,12 @@ class _UpdatePoliState extends State<UpdatePoli> {
                                 poliController.updatePoli(cm);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text('Contact Updated'),
+                                    content: Text('Poli Updated'),
                                     duration: Duration(seconds: 1),
                                     backgroundColor: Colors.green,
                                   ),
                                 );
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => const Poli(),

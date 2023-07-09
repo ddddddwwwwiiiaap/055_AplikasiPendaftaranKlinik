@@ -94,7 +94,7 @@ class _PendaftaranState extends State<Pendaftaran> {
             .collection('antrian')
             .get();
         List<DocumentSnapshot> docUserAntrianCount = docUsersAntrian
-            .docs; //berfungsi untuk menghitung jumlah antrian yang sudah diambil oleh user
+            .docs;
 
         final docId = await FirebaseFirestore.instance
             .collection('users')
@@ -139,17 +139,22 @@ class _PendaftaranState extends State<Pendaftaran> {
     DocumentReference documentReference =
         FirebaseFirestore.instance.collection('users').doc(widget.uId);
 
-    FirebaseFirestore.instance.runTransaction((transaction) async {
-      DocumentSnapshot documentSnapshot =
-          await transaction.get(documentReference);
+    FirebaseFirestore.instance.runTransaction(
+      (transaction) async {
+        DocumentSnapshot documentSnapshot =
+            await transaction.get(documentReference);
 
-      if (documentSnapshot.exists) {
-        transaction.update(documentReference, <String, dynamic>{
-          'noAntrian': FieldValue.increment(1),
-          'poli': namaPoli.toString()
-        });
-      }
-    });
+        if (documentSnapshot.exists) {
+          transaction.update(
+            documentReference,
+            <String, dynamic>{
+              'noAntrian': FieldValue.increment(1),
+              'poli': namaPoli.toString()
+            },
+          );
+        }
+      },
+    );
   }
 
   showAlertDialogLoading(BuildContext context) {
@@ -158,11 +163,12 @@ class _PendaftaranState extends State<Pendaftaran> {
         children: [
           const CircularProgressIndicator(),
           Container(
-              margin: const EdgeInsets.only(left: 15),
-              child: const Text(
-                "Loading...",
-                style: TextStyle(fontSize: 12),
-              )),
+            margin: const EdgeInsets.only(left: 15),
+            child: const Text(
+              "Loading...",
+              style: TextStyle(fontSize: 12),
+            ),
+          ),
         ],
       ),
     );
@@ -177,25 +183,28 @@ class _PendaftaranState extends State<Pendaftaran> {
 
   signUpDialog() {
     return showDialog(
-        context: context,
-        builder: (_) {
-          return AlertDialog(
-            title: const Text(titleSuccess),
-            content: const Text('Antrian Anda Telah Terdaftar!'),
-            actions: [
-              TextButton(
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePagePasien()),
-                      ),
-                  child: const Text(
-                    'OK',
-                    style: TextStyle(color: colorPinkText),
-                  ))
-            ],
-          );
-        });
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: const Text(titleSuccess),
+          content: const Text('Antrian Anda Telah Terdaftar!'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomePagePasien(),
+                ),
+              ),
+              child: const Text(
+                'OK',
+                style: TextStyle(color: colorPinkText),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -203,6 +212,17 @@ class _PendaftaranState extends State<Pendaftaran> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePagePasien(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: const Text(titleDaftarAntrian),
       ),
       body: SizedBox(
@@ -280,10 +300,12 @@ class _PendaftaranState extends State<Pendaftaran> {
                                 return null;
                               },
                               items: snapshot.data!
-                                  .map((value) => DropdownMenuItem(
-                                        child: Text(value['namaPoli']),
-                                        value: value['namaPoli'],
-                                      ))
+                                  .map(
+                                    (value) => DropdownMenuItem(
+                                      child: Text(value['namaPoli']),
+                                      value: value['namaPoli'],
+                                    ),
+                                  )
                                   .toList(),
                             )
                           : const Center(
@@ -323,14 +345,14 @@ class _PendaftaranState extends State<Pendaftaran> {
                                 setDate = val!;
                               },
                               decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.calendar_month,
-                                    color: colorPrimary,
-                                  ),
-                                  disabledBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide.none),
-                                  contentPadding:
-                                      const EdgeInsets.only(top: 12)),
+                                prefixIcon: Icon(
+                                  Icons.calendar_month,
+                                  color: colorPrimary,
+                                ),
+                                disabledBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                contentPadding: const EdgeInsets.only(top: 12),
+                              ),
                             ),
                           ),
                         ),
@@ -369,14 +391,14 @@ class _PendaftaranState extends State<Pendaftaran> {
                                 setDate = val!;
                               },
                               decoration: InputDecoration(
-                                  prefixIcon: Icon(
-                                    Icons.calendar_month,
-                                    color: colorPrimary,
-                                  ),
-                                  disabledBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide.none),
-                                  contentPadding:
-                                      const EdgeInsets.only(top: 12)),
+                                prefixIcon: Icon(
+                                  Icons.calendar_month,
+                                  color: colorPrimary,
+                                ),
+                                disabledBorder: const UnderlineInputBorder(
+                                    borderSide: BorderSide.none),
+                                contentPadding: const EdgeInsets.only(top: 12),
+                              ),
                             ),
                           ),
                         ),
@@ -394,22 +416,26 @@ class _PendaftaranState extends State<Pendaftaran> {
 
   Widget buildButtonDaftar() {
     return ElevatedButton(
-        onPressed: createAntrianPoli,
-        style: ButtonStyle(
-            backgroundColor: const MaterialStatePropertyAll(colorButton),
-            shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(24)))),
-        child: Container(
-            width: 120,
-            height: 40,
-            child: const Center(
-                child: Text(
-              textButtonDaftar,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16),
-            ))));
+      onPressed: createAntrianPoli,
+      style: ButtonStyle(
+          backgroundColor: const MaterialStatePropertyAll(colorButton),
+          shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)))),
+      child: Container(
+        width: 120,
+        height: 40,
+        child: const Center(
+          child: Text(
+            textButtonDaftar,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Widget buildFooter(Size size) {
@@ -424,14 +450,15 @@ class _PendaftaranState extends State<Pendaftaran> {
               children: [
                 Image.asset("assets/ellipse/ellipse4.png"),
                 Positioned.fill(
-                    left: 0,
-                    top: 32,
-                    right: 0,
-                    bottom: 0,
-                    child: Text(
-                      "Hy kak ${widget.nama},\n$textInformasiDaftarAntrian",
-                      textAlign: TextAlign.center,
-                    )),
+                  left: 0,
+                  top: 32,
+                  right: 0,
+                  bottom: 0,
+                  child: Text(
+                    "Hy kak ${widget.nama},\n$textInformasiDaftarAntrian",
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ],
             ),
           ),

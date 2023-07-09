@@ -153,7 +153,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.push(context,
+            onTap: () => Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (_) => const HomePagePasien())),
             leading: Image.asset(
               "assets/icon/icon_home.png",
@@ -164,7 +164,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (_) => ProfilePasien(
@@ -188,7 +188,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (_) => Pendaftaran(
@@ -204,7 +204,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (_) =>
@@ -218,7 +218,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.push(
+            onTap: () => Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                     builder: (_) => RiwayatPemeriksaanPages(
@@ -304,7 +304,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
         child: Container(
           margin: const EdgeInsets.only(bottom: 90),
           child: ElevatedButton(
-              onPressed: () => Navigator.push(
+              onPressed: () => Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       builder: (_) => Pendaftaran(
@@ -375,7 +375,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
             Container(
               margin: const EdgeInsets.only(top: 120),
               child: ElevatedButton(
-                  onPressed: () => Navigator.push(
+                  onPressed: () => Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (_) => AntrianPages(

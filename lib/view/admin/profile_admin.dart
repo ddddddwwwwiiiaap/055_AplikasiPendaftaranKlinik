@@ -3,6 +3,7 @@ import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
+import 'package:aplikasipendaftaranklinik/view/admin/homepage_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -88,11 +89,40 @@ class _ProfileAdminState extends State<ProfileAdmin> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomePageAdmin(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: const Text(titleProfile),
       ),
-      body: SizedBox(
+      body: Container(
         width: size.width,
         height: size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              colorPrimary[50]!,
+              colorPrimary[100]!,
+              colorPrimary[200]!,
+              colorPrimary[300]!,
+              colorPrimary[400]!,
+              colorPrimary[500]!,
+              colorPrimary[600]!,
+              colorPrimary[700]!,
+              colorPrimary[800]!,
+              colorPrimary[900]!,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -148,12 +178,13 @@ class _ProfileAdminState extends State<ProfileAdmin> {
             margin: const EdgeInsets.fromLTRB(16, 0, 16, 8),
             padding: const EdgeInsets.only(left: 4, bottom: 4),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: Colors.white),
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: TextFormField(
               controller: _nama,
               keyboardType: TextInputType.name,
               textInputAction: TextInputAction.next,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(labelText: textNama),
               validator: (value) {
                 if (value!.isEmpty) {
@@ -174,13 +205,12 @@ class _ProfileAdminState extends State<ProfileAdmin> {
             padding: const EdgeInsets.only(left: 4, bottom: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Colors.white,
             ),
             child: TextFormField(
               controller: _email,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(
                 labelText: textEmail,
               ),
@@ -203,14 +233,13 @@ class _ProfileAdminState extends State<ProfileAdmin> {
             padding: const EdgeInsets.only(left: 4, bottom: 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Colors.white,
             ),
             child: TextFormField(
               controller: _nomorhp,
               keyboardType: TextInputType.phone,
               textInputAction: TextInputAction.next,
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
               decoration: const InputDecoration(
@@ -235,9 +264,9 @@ class _ProfileAdminState extends State<ProfileAdmin> {
             child: Text(
               textTglLahir,
               style: TextStyle(
-                fontSize: 11,
+                fontSize: 12,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 99, 98, 98),
+                color: Color.fromARGB(255, 57, 57, 57),
               ),
             ),
           ),
@@ -249,9 +278,15 @@ class _ProfileAdminState extends State<ProfileAdmin> {
               width: size.width,
               margin: const EdgeInsets.only(top: 8, left: 16, right: 16),
               alignment: Alignment.center,
-              decoration: const BoxDecoration(color: colorButtonHome),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: colorPrimary,
+                  width: 1,
+                ),
+              ),
               child: TextFormField(
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(fontSize: 16),
                 enabled: false,
                 keyboardType: TextInputType.text,
                 onSaved: (String? val) {
@@ -266,8 +301,9 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                     color: colorPrimary,
                   ),
                   hintText: tglLahir,
-                  disabledBorder:
-                      const UnderlineInputBorder(borderSide: BorderSide.none),
+                  disabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide.none,
+                  ),
                   contentPadding: const EdgeInsets.only(top: 12),
                 ),
               ),
@@ -277,12 +313,13 @@ class _ProfileAdminState extends State<ProfileAdmin> {
             margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
             padding: const EdgeInsets.only(left: 4, bottom: 4),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: Colors.white),
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: TextFormField(
               controller: _alamat,
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.done,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               decoration: const InputDecoration(
                 labelText: textAlamat,
               ),
@@ -299,7 +336,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                 });
               },
             ),
-          )
+          ),
         ],
       ),
     );

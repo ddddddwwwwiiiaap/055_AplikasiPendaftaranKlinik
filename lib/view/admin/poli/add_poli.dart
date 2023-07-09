@@ -1,5 +1,6 @@
 import 'package:aplikasipendaftaranklinik/controller/poli_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/poli_model.dart';
+import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/poli/poli.dart';
 import 'package:flutter/material.dart';
@@ -21,14 +22,36 @@ class _AddPoliState extends State<AddPoli> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Poli(),
+              ),
+            );
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
         title: const Text(textAddPoli),
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Colors.purple.shade100, Colors.pink.shade300],
+            colors: [
+              colorPrimary[50]!,
+              colorPrimary[100]!,
+              colorPrimary[200]!,
+              colorPrimary[300]!,
+              colorPrimary[400]!,
+              colorPrimary[500]!,
+              colorPrimary[600]!,
+              colorPrimary[700]!,
+              colorPrimary[800]!,
+              colorPrimary[900]!,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
           ),
         ),
         child: SafeArea(
@@ -77,23 +100,25 @@ class _AddPoliState extends State<AddPoli> {
                             height: 20,
                           ),
                           ElevatedButton(
-                            child: const Text('Add Contact'),
+                            child: const Text('Add Poli'),
                             onPressed: () async {
                               if (formKey.currentState!.validate()) {
                                 PoliModel cm = PoliModel(
                                   namaPoli: namaPoli!,
                                 );
-                                poliController.addPoli(cm).then((value) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const Poli(),
-                                    ),
-                                  );
-                                });
+                                poliController.addPoli(cm).then(
+                                  (value) {
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const Poli(),
+                                      ),
+                                    );
+                                  },
+                                );
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
-                                    content: Text('Contact Added'),
+                                    content: Text('Poli Added'),
                                     duration: Duration(seconds: 1),
                                     backgroundColor: Colors.green,
                                   ),
