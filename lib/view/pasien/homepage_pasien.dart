@@ -21,6 +21,7 @@ class HomePagePasien extends StatefulWidget {
 
 class _HomePagePasienState extends State<HomePagePasien> {
   var auth = AuthController(isEdit: false);
+  var pendaftaran = Pendaftaran();
   String? uId;
   String? nama;
   String? email;
@@ -37,6 +38,45 @@ class _HomePagePasienState extends State<HomePagePasien> {
     // TODO: implement initState
     super.initState();
     getUser();
+  }
+
+  void checkAndResetAntrian() {
+    DateTime now = DateTime.now();
+    int currentHour = now.hour;
+
+    if (currentHour >= 20 && currentHour <= 00  || currentHour >= 00 && currentHour < 6) {
+      showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: const Text('Pendaftaran Tidak Tersedia'),
+            content: const Text(
+                'Maaf, pendaftaran hanya tersedia dari pukul 06.00 hingga 19.59.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'OK',
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Pendaftaran(
+            uId: uId,
+            nama: nama,
+          ),
+        ),
+      );
+    }
   }
 
   showDialogExitToApp() {
@@ -65,16 +105,14 @@ class _HomePagePasienState extends State<HomePagePasien> {
     );
   }
 
-  Future<UserModel?> getUser() async {
+  Future<void> getUser() async {
     await FirebaseFirestore.instance
         .collection('users')
         .where('uId', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .get()
-        .then(
-      (result) {
-        if (result.docs.isNotEmpty) {
-          setState(
-            () {
+        .then((result) {
+      if (result.docs.isNotEmpty) {
+        setState(() {
               uId = result.docs[0].data()['uId'];
               nama = result.docs[0].data()['nama'];
               email = result.docs[0].data()['email'];
@@ -84,12 +122,29 @@ class _HomePagePasienState extends State<HomePagePasien> {
               alamat = result.docs[0].data()['alamat'];
               noAntrian = result.docs[0].data()['noAntrian'];
               poli = result.docs[0].data()['poli'];
-            },
-          );
+        });
+
+        // Cek waktu saat ini
+        DateTime now = DateTime.now();
+        int currentHour = now.hour;
+
+        // Reset nomor antrian jika sudah melewati pukul 23.00 sampai 23.59
+        if (currentHour >= 20 && currentHour <= 00  || currentHour >= 00 && currentHour < 6) {
+          resetNoAntrian();
         }
-      },
-    );
-    return null;
+      }
+    });
+  }
+
+  Future<void> resetNoAntrian() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .update({'noAntrian': 0});
+
+    setState(() {
+      noAntrian = 0;
+    });
   }
 
   @override
@@ -138,9 +193,11 @@ class _HomePagePasienState extends State<HomePagePasien> {
                 child: ListTile(
                   leading: Image.asset("assets/image/profil.png"),
                   title: Text(
-                    "$nama",
+                    "$nama".toUpperCase(),
                     style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   subtitle: Text(
                     "No. Akun : ${uId?.substring(20, 27)}",
@@ -188,13 +245,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
             ),
           ),
           ListTile(
-            onTap: () => Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (_) => Pendaftaran(
-                          uId: uId.toString(),
-                          nama: nama.toString(),
-                        ))),
+            onTap: checkAndResetAntrian,
             leading: Image.asset(
               "assets/icon/icon_daftar_antrian.png",
               width: 24,
@@ -304,13 +355,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
         child: Container(
           margin: const EdgeInsets.only(bottom: 90),
           child: ElevatedButton(
-              onPressed: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => Pendaftaran(
-                            uId: uId.toString(),
-                            nama: nama.toString(),
-                          ))),
+              onPressed: checkAndResetAntrian,
               style: ButtonStyle(
                   backgroundColor:
                       const MaterialStatePropertyAll(colorButtonHome),
@@ -366,9 +411,9 @@ class _HomePagePasienState extends State<HomePagePasien> {
                 child: Row(
                   children: [
                     Text(
-                      noAntrian == null ? "" : "$noAntrian",
-                      style:
-                          const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                      noAntrian == null ? "" : "${noAntrian ?? "-"}",
+                      style: const TextStyle(
+                          fontSize: 36, fontWeight: FontWeight.bold),
                     ),
                   ],
                 )),
@@ -378,8 +423,8 @@ class _HomePagePasienState extends State<HomePagePasien> {
                   onPressed: () => Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => AntrianPages(
-                              noAntrian: noAntrian, poli: poli))),
+                          builder: (_) =>
+                              AntrianPages(noAntrian: noAntrian, poli: poli))),
                   style: ButtonStyle(
                       backgroundColor:
                           const MaterialStatePropertyAll(colorButtonHome),
