@@ -82,7 +82,10 @@ class AuthController {
       content: const Text("Maaf, Password Salah!"),
       actions: [
         TextButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const Login()),
+          ),
           child: const Text(
             "OK",
             style: TextStyle(color: colorPinkText),
