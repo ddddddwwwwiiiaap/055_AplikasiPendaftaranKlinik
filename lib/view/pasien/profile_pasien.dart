@@ -75,6 +75,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
         nomorhp = widget.nomorhp!;
         tglLahir = widget.tglLahir!;
         alamat = widget.alamat!;
+
         _nama.text = widget.nama!;
         _email.text = widget.email!;
         _nomorhp.text = widget.nomorhp!;
@@ -189,6 +190,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
               color: Colors.white,
             ),
             child: TextFormField(
+              readOnly: true,
               controller: _email,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
@@ -196,13 +198,6 @@ class _ProfilePasienState extends State<ProfilePasien> {
               decoration: const InputDecoration(
                 labelText: textEmail,
               ),
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Masukkan $textEmail';
-                } else {
-                  return '$textEmail Salah!';
-                }
-              },
               onChanged: (value) {
                 setState(() {
                   email = value;
