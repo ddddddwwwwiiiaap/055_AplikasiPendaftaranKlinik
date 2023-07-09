@@ -44,7 +44,8 @@ class _HomePagePasienState extends State<HomePagePasien> {
     DateTime now = DateTime.now();
     int currentHour = now.hour;
 
-    if (currentHour >= 20 && currentHour <= 00  || currentHour >= 00 && currentHour < 6) {
+    if (currentHour >= 20 && currentHour <= 00 ||
+        currentHour >= 00 && currentHour < 6) {
       showDialog(
         context: context,
         builder: (_) {
@@ -52,6 +53,28 @@ class _HomePagePasienState extends State<HomePagePasien> {
             title: const Text('Pendaftaran Tidak Tersedia'),
             content: const Text(
                 'Maaf, pendaftaran hanya tersedia dari pukul 06.00 hingga 19.59.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'OK',
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ],
+          );
+        },
+      );
+    } else if (noAntrian != null && noAntrian! >= 25) {
+      showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            title: const Text('Pendaftaran Tidak Tersedia'),
+            content: const Text(
+                'Maaf, nomor antrian telah mencapai batas maksimum.'),
             actions: [
               TextButton(
                 onPressed: () {
@@ -113,15 +136,15 @@ class _HomePagePasienState extends State<HomePagePasien> {
         .then((result) {
       if (result.docs.isNotEmpty) {
         setState(() {
-              uId = result.docs[0].data()['uId'];
-              nama = result.docs[0].data()['nama'];
-              email = result.docs[0].data()['email'];
-              role = result.docs[0].data()['role'];
-              nomorhp = result.docs[0].data()['nomorhp'];
-              tglLahir = result.docs[0].data()['tglLahir'];
-              alamat = result.docs[0].data()['alamat'];
-              noAntrian = result.docs[0].data()['noAntrian'];
-              poli = result.docs[0].data()['poli'];
+          uId = result.docs[0].data()['uId'];
+          nama = result.docs[0].data()['nama'];
+          email = result.docs[0].data()['email'];
+          role = result.docs[0].data()['role'];
+          nomorhp = result.docs[0].data()['nomorhp'];
+          tglLahir = result.docs[0].data()['tglLahir'];
+          alamat = result.docs[0].data()['alamat'];
+          noAntrian = result.docs[0].data()['noAntrian'];
+          poli = result.docs[0].data()['poli'];
         });
 
         // Cek waktu saat ini
@@ -129,7 +152,8 @@ class _HomePagePasienState extends State<HomePagePasien> {
         int currentHour = now.hour;
 
         // Reset nomor antrian jika sudah melewati pukul 23.00 sampai 23.59
-        if (currentHour >= 20 && currentHour <= 00  || currentHour >= 00 && currentHour < 6) {
+        if (currentHour >= 20 && currentHour <= 00 ||
+            currentHour >= 00 && currentHour < 6) {
           resetNoAntrian();
         }
       }
