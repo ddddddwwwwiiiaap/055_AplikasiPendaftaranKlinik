@@ -17,7 +17,7 @@ class PendaftaranController {
   final TextEditingController tanggalantrian = TextEditingController();
   final TextEditingController waktuantrian = TextEditingController();
 
-  final contactCollection =
+  final pendaftaranCollection =
       FirebaseFirestore.instance.collection('antrian pasien');
 
   final StreamController<List<DocumentSnapshot>> streamController =
