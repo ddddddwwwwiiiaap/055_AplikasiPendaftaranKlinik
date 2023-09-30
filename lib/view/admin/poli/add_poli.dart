@@ -35,103 +35,83 @@ class _AddPoliState extends State<AddPoli> {
         ),
         title: const Text(textAddPoli),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              colorPrimary[50]!,
-              colorPrimary[100]!,
-              colorPrimary[200]!,
-              colorPrimary[300]!,
-              colorPrimary[400]!,
-              colorPrimary[500]!,
-              colorPrimary[600]!,
-              colorPrimary[700]!,
-              colorPrimary[800]!,
-              colorPrimary[900]!,
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    elevation: 10,
-                    shadowColor: Colors.black,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 10,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 10,
+                  shadowColor: Colors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const CircleAvatar(
+                          radius: 25,
+                          child: Icon(
+                            Icons.person,
+                            size: 25,
                           ),
-                          const CircleAvatar(
-                            radius: 25,
-                            child: Icon(
-                              Icons.person,
-                              size: 25,
-                            ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            labelText: 'Poli',
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            decoration: const InputDecoration(
-                              labelText: 'Poli',
-                            ),
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter your name';
-                              }
-                              return null;
-                            },
-                            onChanged: (value) => namaPoli = value,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ElevatedButton(
-                            child: const Text('Add Poli'),
-                            onPressed: () async {
-                              if (formKey.currentState!.validate()) {
-                                PoliModel cm = PoliModel(
-                                  namaPoli: namaPoli!,
-                                );
-                                poliController.addPoli(cm).then(
-                                  (value) {
-                                    Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const Poli(),
-                                      ),
-                                    );
-                                  },
-                                );
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('Poli Added'),
-                                    duration: Duration(seconds: 1),
-                                    backgroundColor: Colors.green,
-                                  ),
-                                );
-                              }
-                            },
-                          ),
-                        ],
-                      ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter poly name';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => namaPoli = value,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          child: const Text('Add Poli'),
+                          onPressed: () async {
+                            if (formKey.currentState!.validate()) {
+                              PoliModel cm = PoliModel(
+                                namaPoli: namaPoli!,
+                              );
+                              poliController.addPoli(cm).then(
+                                (value) {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const Poli(),
+                                    ),
+                                  );
+                                },
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Poli Added'),
+                                  duration: Duration(seconds: 1),
+                                  backgroundColor: Colors.green,
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

@@ -51,129 +51,109 @@ class _PoliState extends State<Poli> {
           ),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              colorPrimary[50]!,
-              colorPrimary[100]!,
-              colorPrimary[200]!,
-              colorPrimary[300]!,
-              colorPrimary[400]!,
-              colorPrimary[500]!,
-              colorPrimary[600]!,
-              colorPrimary[700]!,
-              colorPrimary[800]!,
-              colorPrimary[900]!,
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: StreamBuilder<List<DocumentSnapshot>>(
-                  stream: pc.stream,
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    final List<DocumentSnapshot> data = snapshot.data!;
-                    return ListView.builder(
-                      itemCount: data.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: InkWell(
-                            onLongPress: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => UpdatePoli(
-                                    poliModel: PoliModel.fromMap(data[index]
-                                        .data() as Map<String, dynamic>),
-                                    poli: data[index],
-                                  ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: StreamBuilder<List<DocumentSnapshot>>(
+                stream: pc.stream,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  final List<DocumentSnapshot> data = snapshot.data!;
+                  return ListView.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: InkWell(
+                          onLongPress: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => UpdatePoli(
+                                  poliModel: PoliModel.fromMap(data[index]
+                                      .data() as Map<String, dynamic>),
+                                  poli: data[index],
                                 ),
-                              );
-                            },
-                            child: Card(
-                              elevation: 10,
-                              shadowColor: Colors.cyan,
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor: colorPrimary,
-                                  child: Text(
-                                    data[index]['namaPoli']
-                                        .substring(0, 1)
-                                        .toUpperCase(),
-                                    style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                              ),
+                            );
+                          },
+                          child: Card(
+                            elevation: 10,
+                            shadowColor: Colors.cyan,
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundColor: colorPrimary,
+                                child: Text(
+                                  data[index]['namaPoli']
+                                      .substring(0, 1)
+                                      .toUpperCase(),
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                                title: Text(data[index]['namaPoli']),
-                                trailing: IconButton(
-                                  icon: const Icon(Icons.delete),
-                                  color: Colors.red,
-                                  onPressed: () {
-                                    //buat dialog delete data
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return AlertDialog(
-                                          title: const Text('Delete Data!'),
-                                          content: const Text(
-                                              'Are you sure want to delete this data?'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: const Text('Cancel'),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                pc.poliCollection
-                                                    .doc(data[index].id)
-                                                    .delete();
-                                                pc.getPoli();
-                                                Navigator.pop(context);
-                                                ScaffoldMessenger.of(context)
-                                                    .showSnackBar(
-                                                  const SnackBar(
-                                                    content: Text(
-                                                        'Data has been deleted'),
-                                                    duration:
-                                                        Duration(seconds: 1),
-                                                    backgroundColor: Colors.red,
-                                                  ),
-                                                );
-                                              },
-                                              child: const Text('Delete'),
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
+                              ),
+                              title: Text(data[index]['namaPoli']),
+                              trailing: IconButton(
+                                icon: const Icon(Icons.delete),
+                                color: Colors.red,
+                                onPressed: () {
+                                  //buat dialog delete data
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: const Text('Delete Data!'),
+                                        content: const Text(
+                                            'Are you sure want to delete this data?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('Cancel'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              pc.poliCollection
+                                                  .doc(data[index].id)
+                                                  .delete();
+                                              pc.getPoli();
+                                              Navigator.pop(context);
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                const SnackBar(
+                                                  content: Text(
+                                                      'Data has been deleted'),
+                                                  duration:
+                                                      Duration(seconds: 1),
+                                                  backgroundColor: Colors.red,
+                                                ),
+                                              );
+                                            },
+                                            child: const Text('Delete'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
                               ),
                             ),
                           ),
-                        );
-                      },
-                    );
-                  },
-                ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
