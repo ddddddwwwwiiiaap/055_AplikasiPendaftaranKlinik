@@ -233,7 +233,7 @@ class _PendaftaranState extends State<Pendaftaran> {
             buildTextTitle(),
             buildFormAmbilAntrian(size),
             buildButtonDaftar(),
-            // buildFooter(size)
+            buildFooter(size)
           ],
         ),
       ),
