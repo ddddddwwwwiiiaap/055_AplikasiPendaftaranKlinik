@@ -87,7 +87,7 @@ class _UpdatePoliState extends State<UpdatePoli> {
                             ),
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return 'Please enter name';
+                                return 'Please enter poly name';
                               }
                               return null;
                             },
