@@ -151,8 +151,8 @@ class _HomePagePasienState extends State<HomePagePasien> {
         DateTime now = DateTime.now();
         int currentHour = now.hour;
 
-        // Reset nomor antrian jika sudah melewati pukul 23.00 sampai 23.59
-        if (currentHour >= 20 && currentHour <= 00 ||
+        // Reset nomor antrian jika sudah melewati pukul 23.00 sampai 06.00
+        if (currentHour >= 23 && currentHour <= 00 ||
             currentHour >= 00 && currentHour < 6) {
           resetNoAntrian();
         }
