@@ -185,6 +185,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: TextFormField(
+              readOnly: true,
               controller: _email,
               keyboardType: TextInputType.emailAddress,
               textInputAction: TextInputAction.next,
