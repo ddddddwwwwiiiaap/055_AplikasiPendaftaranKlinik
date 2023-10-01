@@ -30,7 +30,7 @@ class _JadwalPemeriksaanPagesState extends State<JadwalPemeriksaanPages> {
     DateTime now = DateTime.now();
     int currentHour = now.hour;
 
-    if (currentHour >= 20 && currentHour <= 00  || currentHour >= 00 && currentHour < 6) {
+    if (currentHour >= 23 && currentHour <= 24  || currentHour >= 00 && currentHour < 6) {
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('antrian pasien').get();
 
