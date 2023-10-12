@@ -1,3 +1,8 @@
+/// Nama Module: profile_pasien.dart
+/// Deskripsi: Modul untuk layar profile pasien dalam aplikasi Flutter pendaftaran klinik.
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman profile pasien.
+
 import 'package:aplikasipendaftaranklinik/controller/auth_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
@@ -7,15 +12,25 @@ import 'package:aplikasipendaftaranklinik/view/pasien/homepage_pasien.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+/// ProfilePasien class adalah widget yang digunakan untuk membuat tampilan halaman profile pasien
 class ProfilePasien extends StatefulWidget {
+  /// String? uid digunakan untuk menyimpan uid dari user
   String? uid;
+  /// String? nama digunakan untuk menyimpan nama dari user
   String? nama;
+  /// String? email digunakan untuk menyimpan email dari user
   String? email;
+  /// String? role digunakan untuk menyimpan role dari user
   String? role;
+  /// String? nomorhp digunakan untuk menyimpan nomorhp dari user
   String? nomorhp;
+  /// String? tglLahir digunakan untuk menyimpan tglLahir dari user
   String? tglLahir;
+  /// String? alamat digunakan untuk menyimpan alamat dari user
   String? alamat;
+  /// bool isEdit digunakan untuk menyimpan status apakah user sedang mengedit profile atau tidak
   final bool isEdit;
+  /// ProfilePasien({Key? key, this.uid, this.nama, this.email, this.role, this.nomorhp, this.tglLahir, this.alamat, required this.isEdit}) digunakan untuk membuat konstruktor dari class ProfilePasien yang menerima parameter key dengan tipe Key yang bersifat opsional, uid dengan tipe String yang bersifat opsional, nama dengan tipe String yang bersifat opsional, email dengan tipe String yang bersifat opsional, role dengan tipe String yang bersifat opsional, nomorhp dengan tipe String yang bersifat opsional, tglLahir dengan tipe String yang bersifat opsional, alamat dengan tipe String yang bersifat opsional, dan isEdit dengan tipe bool yang bersifat wajib
   ProfilePasien(
       {Key? key,
       this.uid,
@@ -32,6 +47,7 @@ class ProfilePasien extends StatefulWidget {
   State<ProfilePasien> createState() => _ProfilePasienState();
 }
 
+/// _ProfilePasienState class adalah class yang digunakan untuk menampilkan halaman profile pasien
 class _ProfilePasienState extends State<ProfilePasien> {
   var auth = AuthController(isEdit: true);
   String? uId;
@@ -51,6 +67,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
   DateTime selectedDate = DateTime.now();
   String? setDate, setTime;
 
+  /// Future<Null> _selectDate digunakan untuk menampilkan date picker
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
@@ -65,6 +82,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
       });
   }
 
+  /// initState digunakan untuk menginisialisasi state
   @override
   void initState() {
     super.initState();
@@ -85,6 +103,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
     }
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman profile pasien
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -119,6 +138,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
     );
   }
 
+  /// Method buildHeader digunakan untuk membuat tampilan header halaman profile pasien
   Widget buildHeader(Size size) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 0, 40),
@@ -151,6 +171,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
     );
   }
 
+  /// Method buildFormProfile digunakan untuk membuat tampilan form profile pasien
   Widget buildFormProfile(Size size) {
     return Form(
       key: formKey,
@@ -312,6 +333,7 @@ class _ProfilePasienState extends State<ProfilePasien> {
     );
   }
 
+  /// Method buildButtonSave digunakan untuk membuat tampilan button save
   Widget buildButtonSave() {
     return ElevatedButton(
       onPressed: () async {

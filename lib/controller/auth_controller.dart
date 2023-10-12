@@ -1,3 +1,8 @@
+/// Nama Module: auth_controller.dart
+/// Deskripsi: Modul ini digunakan untuk membuat controller auth
+/// 
+/// Kode ini berisi implementasi controller auth
+
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
@@ -9,14 +14,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+/// AuthController class adalah class yang digunakan untuk membuat controller auth
 class AuthController {
+  /// bool isEdit adalah variabel yang digunakan untuk menentukan apakah user sedang mengedit data atau tidak
   final bool isEdit;
+  /// Fungsi AuthController({Key? key, required this.isEdit}) adalah konstruktor dari class AuthController yang menerima parameter key dengan tipe Key yang bersifat opsional dan isEdit dengan tipe bool yang bersifat wajib
+  /// Fungsi ini akan dijalankan ketika class AuthController dipanggil
   AuthController({Key? key, required this.isEdit}) : super();
 
+  /// FirebaseAuth auth adalah instance dari FirebaseAuth
   final FirebaseAuth auth = FirebaseAuth.instance;
+
+  /// CollectionReference userCollection adalah instance dari CollectionReference
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
 
+  /// Future registerWithEmailAndPassword digunakan untuk mendaftarkan user baru
   Future<UserModel?> registerWithEmailAndPassword(
       String email, String password, String nama, String role) async {
     try {
@@ -50,6 +63,7 @@ class AuthController {
     return null;
   }
 
+  /// showAlertUserNotFound digunakan untuk menampilkan alert dialog ketika user tidak ditemukan
   void showAlertUserNotFound(BuildContext context) {
     AlertDialog alert = AlertDialog(
       title: const Text(titleError),
@@ -76,6 +90,7 @@ class AuthController {
     );
   }
 
+  /// showAlertUserWrongPassword digunakan untuk menampilkan alert dialog ketika password salah
   void showAlertUserWrongPassword(BuildContext context) {
     AlertDialog alert = AlertDialog(
       title: const Text(titleError),
@@ -102,6 +117,7 @@ class AuthController {
     );
   }
 
+  /// showAlertDialogLoading digunakan untuk menampilkan alert dialog ketika loading
   void showAlertDialogLoading(BuildContext context) {
     AlertDialog alert = AlertDialog(
       content: Row(
@@ -126,6 +142,7 @@ class AuthController {
     );
   }
 
+  ///Future signInWithEmailAndPassword digunakan untuk login dengan email dan password
   Future<UserModel?> signInWithEmailAndPassword(
       String email, String password, BuildContext context) async {
     showAlertDialogLoading(context);
@@ -169,6 +186,7 @@ class AuthController {
     return null;
   }
 
+  /// Future<UserModel?> getUser digunakan untuk mendapatkan data user
   Future<UserModel?> getUser() async {
     final User? user = auth.currentUser;
     if (user != null) {
@@ -198,6 +216,7 @@ class AuthController {
     return null;
   }
 
+  /// Future<void> signOut digunakan untuk logout
   Future<void> signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     // ignore: use_build_context_synchronously
@@ -209,6 +228,7 @@ class AuthController {
         (route) => false);
   }
 
+  /// Future<UserModel?> updateProfile digunakan untuk mengupdate data user
   Future<UserModel?> updateProfileAdmin(
       String nama,
       String email,
@@ -240,6 +260,7 @@ class AuthController {
     return null;
   }
 
+  /// infoUpdate digunakan untuk menampilkan alert dialog ketika data berhasil diupdate
   void infoUpdate(BuildContext context) {
     showDialog(
       context: context,
@@ -271,6 +292,7 @@ class AuthController {
     );
   }
 
+  /// Future<UserModel?> updateProfilePasien digunakan untuk mengupdate data user
   Future<UserModel?> updateProfilePasien(
       String nama,
       String email,
@@ -302,6 +324,7 @@ class AuthController {
     return null;
   }
 
+  /// infoUpdatePasien digunakan untuk menampilkan alert dialog ketika data berhasil diupdate
   void infoUpdatePasien(BuildContext context) {
     showDialog(
       context: context,

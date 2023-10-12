@@ -1,3 +1,8 @@
+/// Name Module : profile_admin.dart
+/// Deskripsi : This module is used to display the admin profile
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman profile admin
+
 import 'package:aplikasipendaftaranklinik/controller/auth_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
@@ -7,15 +12,25 @@ import 'package:aplikasipendaftaranklinik/view/admin/homepage_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+/// ProfileAdmin class is a widget used to create a profile page for admin
 class ProfileAdmin extends StatefulWidget {
+  /// String? uid digunakan untuk mendeklarasikan variabel uid dengan tipe data String yang bersifat opsional
   String? uid;
+  /// String? nama digunakan untuk mendeklarasikan variabel nama dengan tipe data String yang bersifat opsional
   String? nama;
+  /// String? email digunakan untuk mendeklarasikan variabel email dengan tipe data String yang bersifat opsional
   String? email;
+  /// String? role digunakan untuk mendeklarasikan variabel role dengan tipe data String yang bersifat opsional
   String? role;
+  /// String? nomorhp digunakan untuk mendeklarasikan variabel nomorhp dengan tipe data String yang bersifat opsional
   String? nomorhp;
+  /// String? tglLahir digunakan untuk mendeklarasikan variabel tglLahir dengan tipe data String yang bersifat opsional
   String? tglLahir;
+  /// String? alamat digunakan untuk mendeklarasikan variabel alamat dengan tipe data String yang bersifat opsional
   String? alamat;
+  /// bool isEdit digunakan untuk mendeklarasikan variabel isEdit dengan tipe data bool yang bersifat wajib
   final bool isEdit;
+  /// ProfileAdmin({Key? key, String? uid, String? nama, String? email, String? role, String? nomorhp, String? tglLahir, String? alamat, required bool isEdit}) digunakan untuk membuat konstruktor dari class ProfileAdmin yang menerima parameter key dengan tipe Key yang bersifat opsional, uid dengan tipe String yang bersifat opsional, nama dengan tipe String yang bersifat opsional, email dengan tipe String yang bersifat opsional, role dengan tipe String yang bersifat opsional, nomorhp dengan tipe String yang bersifat opsional, tglLahir dengan tipe String yang bersifat opsional, alamat dengan tipe String yang bersifat opsional, dan isEdit dengan tipe bool yang bersifat wajib
   ProfileAdmin(
       {Key? key,
       this.uid,
@@ -32,6 +47,7 @@ class ProfileAdmin extends StatefulWidget {
   State<ProfileAdmin> createState() => _ProfileAdminState();
 }
 
+/// _ProfileAdminState class is a class used to display the profile page for admin
 class _ProfileAdminState extends State<ProfileAdmin> {
   var auth = AuthController(isEdit: true);
   String? uId;
@@ -51,6 +67,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
   DateTime selectedDate = DateTime.now();
   String? setDate, setTime;
 
+  /// Future _selectDate digunakan untuk menampilkan date picker
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
@@ -65,6 +82,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
       });
   }
 
+  /// initState digunakan untuk menjalankan method initState
   @override
   void initState() {
     super.initState();
@@ -84,6 +102,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
     }
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman profile admin
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -114,6 +133,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
     );
   }
 
+  /// Method buildHeader digunakan untuk membuat tampilan header pada halaman profile admin
   Widget buildHeader(Size size) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 0, 40),
@@ -146,6 +166,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
     );
   }
 
+  /// Method buildFormProfile digunakan untuk membuat tampilan form profile admin
   Widget buildFormProfile(Size size) {
     return Form(
       key: formKey,
@@ -321,6 +342,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
     );
   }
 
+  /// Method buildButtonSave digunakan untuk membuat tampilan button save pada halaman profile admin
   Widget buildButtonSave() {
     return ElevatedButton(
       onPressed: () async {

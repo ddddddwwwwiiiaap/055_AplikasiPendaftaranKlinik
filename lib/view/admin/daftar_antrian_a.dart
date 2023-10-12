@@ -1,3 +1,8 @@
+/// Nama Module : daftar_antrian_a.dart
+/// Deskripsi : Modul ini digunakan untuk menampilkan daftar antrian pasien
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman daftar antrian pasien
+
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/homepage_admin.dart';
@@ -8,7 +13,10 @@ import 'package:intl/intl.dart';
 
 import '../../themes/custom_colors.dart';
 
+/// DaftarAntrianPagesAdmin class adalah widget yang digunakan untuk membuat tampilan halaman daftar antrian pasien
 class DaftarAntrianPagesAdmin extends StatefulWidget {
+  /// Fungsi DaftarAntrianPagesAdmin({Key? key}) adalah konstruktor dari class DaftarAntrianPagesAdmin yang menerima parameter key dengan tipe Key yang bersifat opsional
+  /// Fungsi ini akan dijalankan ketika class DaftarAntrianPagesAdmin dipanggil
   const DaftarAntrianPagesAdmin({super.key});
 
   @override
@@ -16,6 +24,7 @@ class DaftarAntrianPagesAdmin extends StatefulWidget {
       _DaftarAntrianPagesAdminState();
 }
 
+/// _DaftarAntrianPagesAdminState class adalah class yang digunakan untuk menampilkan halaman daftar antrian pasien
 class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
   final Stream<QuerySnapshot> _streamAntrianPasien =
       FirebaseFirestore.instance.collection("antrian pasien").snapshots();
@@ -26,6 +35,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
 
   DateTime dtNow = DateTime.now();
 
+  /// showEditStatus digunakan untuk menampilkan dialog edit status antrian
   showEditStatus(docId, namaPasien, noAntrian, poli, status, tglAntrian,
       uidPasien, waktuAntrian) {
     showDialog(
@@ -109,6 +119,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
     );
   }
 
+  ///Future createRiwayatPasienMasuk digunakan untuk menambahkan data riwayat pasien masuk
   Future<dynamic> createRiwayatPasienMasuk(uId, namaPasien, noAntrian, poli,
       status, tglAntrian, uidPasien, waktuAntrian) async {
     String timeNow = DateFormat.jm().format(dtNow);
@@ -134,6 +145,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
     }
   }
 
+  /// updateNoAntrianSedangDilayani digunakan untuk mengupdate no antrian yang sedang dilayani
   updateNoAntrianSedangDilayani(noAntrian) {
     DocumentReference documentReference = FirebaseFirestore.instance
         .collection('sedang dilayani')
@@ -151,6 +163,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
     });
   }
 
+  ///infoUpdate digunakan untuk menampilkan dialog info update
   infoUpdate() {
     showDialog(
       context: context,
@@ -178,6 +191,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
     );
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman daftar antrian pasien
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -200,6 +214,7 @@ class _DaftarAntrianPagesAdminState extends State<DaftarAntrianPagesAdmin> {
     );
   }
 
+  /// Method buildListAntrian digunakan untuk membuat tampilan list antrian pasien
   Widget buildListAntrian(Size size) {
     return StreamBuilder(
       stream: _streamAntrianPasien,

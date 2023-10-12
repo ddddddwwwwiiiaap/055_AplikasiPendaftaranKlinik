@@ -1,3 +1,9 @@
+/// Nama Module: register.dart
+/// Deskripsi: Modul untuk layar register dalam aplikasi Flutter pendaftaran klinik.
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman register.
+/// Pengguna dapat memasukkan nama, email, dan password mereka untuk mendaftar ke aplikasi
+
 import 'package:aplikasipendaftaranklinik/controller/auth_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
@@ -6,13 +12,17 @@ import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/login.dart';
 import 'package:flutter/material.dart';
 
+/// Register class adalah widget yang digunakan untuk membuat tampilan halaman register
 class Register extends StatefulWidget {
+  /// Fungsi Register({Key? key}) adalah konstruktor dari class Register yang menerima parameter key dengan tipe Key yang bersifat opsional
+  /// Fungsi ini akan dijalankan ketika class Register dipanggil
   const Register({super.key});
 
   @override
   State<Register> createState() => _RegisterState();
 }
 
+/// _RegisterState class digunakan untuk membuat state dari widget Register
 class _RegisterState extends State<Register> {
   final formkey = GlobalKey<FormState>();
   final authCtr = AuthController(isEdit: false);
@@ -23,12 +33,14 @@ class _RegisterState extends State<Register> {
 
   bool _showPassword = true;
 
+  /// Toggle keamanan tampak password untuk menampilkan atau menyembunyikan password
   void togglePasswordVisibility() {
     setState(() {
       _showPassword = !_showPassword;
     });
   }
 
+  /// Digunakan untuk menampilkan dialog loading
   showAlertDialogLoading(BuildContext context) {
     AlertDialog alert = AlertDialog(
       content: Row(
@@ -53,6 +65,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  /// Digunakan untuk menampilkan dialog konfirmasi registrasi berhasil
   signUpDialog() {
     return showDialog(
       context: context,
@@ -102,6 +115,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman register
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -145,6 +159,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  /// Method buildHeader digunakan untuk membuat tampilan header pada halaman register
   Widget buildHeader() {
     return Container(
       padding: const EdgeInsets.all(24),
@@ -176,6 +191,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  /// Method buildIcon digunakan untuk membuat tampilan icon pada halaman register
   Widget buildIcon() {
     return Container(
       margin: const EdgeInsets.only(bottom: 24),
@@ -183,6 +199,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  /// Method buildFormRegister digunakan untuk membuat tampilan form register pada halaman register
   Widget buildFormRegister() {
     return Form(
       key: formkey,
@@ -311,6 +328,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  /// Method buildButtonRegister digunakan untuk membuat tampilan button register pada halaman register
   Widget buildButtonRegister() {
     return Container(
       margin: const EdgeInsets.only(top: 24),
@@ -375,6 +393,7 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  /// Method buildFooter digunakan untuk membuat tampilan footer pada halaman register
   Widget buildFooter() {
     return Container(
       padding: const EdgeInsets.all(16),

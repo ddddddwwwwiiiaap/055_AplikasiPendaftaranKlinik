@@ -1,3 +1,8 @@
+/// Nama Module : jadwal_pemeriksaan.dart
+/// Deskripsi : Modul ini digunakan untuk menampilkan jadwal pemeriksaan pasien
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman jadwal pemeriksaan pasien
+
 import 'package:aplikasipendaftaranklinik/controller/jadwal_pemeriksaan_controller.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
@@ -6,8 +11,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+/// JadwalPemeriksaanPages class adalah widget yang digunakan untuk membuat tampilan halaman jadwal pemeriksaan pasien
 class JadwalPemeriksaanPages extends StatefulWidget {
+  /// String? uid digunakan untuk menyimpan uid dari pasien
   String? uid;
+  /// Fungsi JadwalPemeriksaanPages({Key? key, this.uid}) adalah konstruktor dari class JadwalPemeriksaanPages yang menerima parameter key dengan tipe Key yang bersifat opsional dan uid dengan tipe String
+  /// Fungsi ini akan dijalankan ketika class JadwalPemeriksaanPages dipanggil
   JadwalPemeriksaanPages({
     Key? key,
     this.uid,
@@ -17,15 +26,18 @@ class JadwalPemeriksaanPages extends StatefulWidget {
   State<JadwalPemeriksaanPages> createState() => _JadwalPemeriksaanPagesState();
 }
 
+/// _JadwalPemeriksaanPagesState class adalah class yang digunakan untuk menampilkan halaman jadwal pemeriksaan pasien
 class _JadwalPemeriksaanPagesState extends State<JadwalPemeriksaanPages> {
   var jadwalPemeriksaanController = JadwalPemeriksaanController();
 
+  /// initState digunakan untuk menjalankan method deleteAntrianPoliAutomatically
   @override
   void initState() {
     super.initState();
     deleteAntrianPoliAutomatically();
   }
 
+  /// Future deleteAntrianPoliAutomatically digunakan untuk menghapus antrian poli secara otomatis
   Future<void> deleteAntrianPoliAutomatically() async {
     DateTime now = DateTime.now();
     int currentHour = now.hour;
@@ -63,6 +75,7 @@ class _JadwalPemeriksaanPagesState extends State<JadwalPemeriksaanPages> {
     }
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman jadwal pemeriksaan pasien
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -92,6 +105,7 @@ class _JadwalPemeriksaanPagesState extends State<JadwalPemeriksaanPages> {
     );
   }
 
+  /// Method buildBackground digunakan untuk membuat tampilan background halaman jadwal pemeriksaan pasien
   Widget buildBackground(Size size) {
     return Container(
       margin: const EdgeInsets.all(24),
@@ -218,6 +232,7 @@ class _JadwalPemeriksaanPagesState extends State<JadwalPemeriksaanPages> {
     );
   }
 
+  /// Method buildImageBottom digunakan untuk membuat tampilan gambar pada halaman jadwal pemeriksaan pasien
   Widget buildImageBottom() {
     return Positioned(
       child: Align(

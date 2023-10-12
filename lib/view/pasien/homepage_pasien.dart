@@ -1,3 +1,8 @@
+/// Nama Module : homepage_pasien.dart
+/// Deskripsi : Modul ini digunakan untuk menampilkan halaman utama pasien
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman utama pasien
+
 import 'package:aplikasipendaftaranklinik/controller/auth_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
@@ -12,13 +17,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+/// HomePagePasien class adalah widget yang digunakan untuk membuat tampilan halaman utama pasien
 class HomePagePasien extends StatefulWidget {
+  /// Fungsi HomePagePasien({Key? key}) adalah konstruktor dari class HomePagePasien yang menerima parameter key dengan tipe Key yang bersifat opsional
+  /// Fungsi ini akan dijalankan ketika class HomePagePasien dipanggil
   const HomePagePasien({super.key});
 
   @override
   State<HomePagePasien> createState() => _HomePagePasienState();
 }
 
+/// _HomePagePasienState class adalah class yang digunakan untuk menampilkan halaman utama pasien
 class _HomePagePasienState extends State<HomePagePasien> {
   var auth = AuthController(isEdit: false);
   var pendaftaran = Pendaftaran();
@@ -40,6 +49,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     getUser();
   }
 
+  /// checkAndResetAntrian digunakan untuk mengecek dan mereset antrian
   void checkAndResetAntrian() {
     DateTime now = DateTime.now();
     int currentHour = now.hour;
@@ -102,6 +112,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     }
   }
 
+  /// showDialogExitToApp digunakan untuk menampilkan dialog konfirmasi keluar aplikasi
   showDialogExitToApp() {
     showDialog(
       context: context,
@@ -128,6 +139,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     );
   }
 
+  /// Future getUser digunakan untuk mendapatkan data user dari database
   Future<void> getUser() async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -160,6 +172,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     });
   }
 
+  /// Future resetNoAntrian digunakan untuk mereset nomor antrian
   Future<void> resetNoAntrian() async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -171,6 +184,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     });
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman utama pasien
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -206,6 +220,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     );
   }
 
+  /// Method homeDrawer digunakan untuk membuat tampilan drawer pada halaman utama pasien
   Widget homeDrawer() {
     return Drawer(
       child: ListView(
@@ -312,6 +327,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     );
   }
 
+  /// Method buildBackground digunakan untuk membuat tampilan background pada halaman utama pasien
   Widget buildBackground(Size size) {
     return Container(
       width: size.width,
@@ -320,6 +336,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     );
   }
 
+  /// Method buildTitleHeader digunakan untuk membuat tampilan title pada halaman utama pasien
   Widget buildTitleHeader() {
     return Positioned.fill(
       top: 40,
@@ -352,6 +369,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     );
   }
 
+  /// Method buildHeader digunakan untuk membuat tampilan header pada halaman utama pasien
   Widget buildHeader(Size size) {
     return Image.asset(
       "assets/image/vector.png",
@@ -360,6 +378,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     );
   }
 
+  /// Method buildIconHome digunakan untuk membuat tampilan icon rumah sakit pada halaman utama pasien
   Widget buildIconHome() {
     return Positioned.fill(
       child: Align(
@@ -372,6 +391,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     );
   }
 
+  /// Method buildButtonAmbilNoAntrian digunakan untuk membuat tampilan button ambil nomor antrian pada halaman utama pasien
   Widget buildButtonAmbilNoAntrian() {
     return Positioned(
       child: Align(
@@ -401,6 +421,7 @@ class _HomePagePasienState extends State<HomePagePasien> {
     );
   }
 
+  /// Method buildButtonLihatAntrian digunakan untuk membuat tampilan button lihat nomor antrian pada halaman utama pasien
   Widget buildButtonLihatAntrian(Size size) {
     return Positioned(
       child: Align(

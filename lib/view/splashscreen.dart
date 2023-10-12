@@ -1,16 +1,25 @@
+/// Nama Module: splashscreen.dart
+/// Deskripsi: Modul untuk layar splashscreen dalam aplikasi Flutter pendaftaran klinik.
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman splashscreen.
+
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/login.dart';
 import 'package:flutter/material.dart';
 
+/// SplashScreen class adalah widget yang digunakan untuk membuat tampilan halaman splashscreen
 class SplashScreen extends StatefulWidget {
+  /// Fungsi SplashScreen({Key? key}) adalah konstruktor dari class SplashScreen yang menerima parameter key dengan tipe Key yang bersifat opsional
+  /// Fungsi ini akan dijalankan ketika class SplashScreen dipanggil
   const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
+/// _SplashScreenState class digunakan untuk membuat state dari widget SplashScreen
 class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
@@ -54,6 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  /// Method buildHeader digunakan untuk membuat tampilan header pada halaman splashscreen
   Widget buildHeader(Size size) {
     return SizedBox(
       width: size.width,
@@ -104,6 +114,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  /// Method buildLogoApp digunakan untuk membuat tampilan logo pada halaman splashscreen
   Widget buildLogoApp() {
     return Container(
       margin: const EdgeInsets.only(bottom: 40),
@@ -114,6 +125,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  /// Method buildDescApp digunakan untuk membuat tampilan deskripsi aplikasi pada halaman splashscreen
   Widget buildDescApp() {
     return Container(
       margin: const EdgeInsets.only(bottom: 90),
@@ -131,6 +143,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
+  /// Method buildButtonNext digunakan untuk membuat tampilan button next pada halaman splashscreen
   Widget buildButtonNext() {
     return ElevatedButton(
       onPressed: () {

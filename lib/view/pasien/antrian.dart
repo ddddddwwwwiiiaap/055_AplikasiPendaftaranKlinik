@@ -1,3 +1,8 @@
+/// Nama Module : antrian.dart
+/// Deskripsi : Modul ini digunakan untuk menampilkan antrian pasien
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman antrian pasien
+
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
@@ -5,21 +10,28 @@ import 'package:aplikasipendaftaranklinik/view/pasien/homepage_pasien.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+/// AntrianPages class adalah widget yang digunakan untuk membuat tampilan halaman antrian pasien
 class AntrianPages extends StatefulWidget {
+  /// noAntrian adalah variabel bertipe int yang digunakan untuk menyimpan nomor antrian pasien
   int? noAntrian;
+  /// poli adalah variabel bertipe String yang digunakan untuk menyimpan poli pasien
   String? poli;
+  /// Fungsi AntrianPages({Key? key}) adalah konstruktor dari class AntrianPages yang menerima parameter key dengan tipe Key yang bersifat opsional dan noAntrian dengan tipe int dan poli dengan tipe String yang bersifat opsional
+  /// Fungsi ini akan dijalankan ketika class AntrianPages dipanggil dengan parameter noAntrian dan poli.
   AntrianPages({Key? key, this.noAntrian, this.poli}) : super(key: key);
 
   @override
   State<AntrianPages> createState() => _AntrianPagesState();
 }
 
+/// _AntrianPagesState class adalah class yang digunakan untuk menampilkan halaman antrian pasien
 class _AntrianPagesState extends State<AntrianPages> {
   final Stream<QuerySnapshot> _streamAntrianPasien =
       FirebaseFirestore.instance.collection("antrian pasien").snapshots();
 
   int? noAntrianSedangDilayani = 25;
 
+  /// initState digunakan untuk mengambil data noAntrianSedangDilayani dari database
   @override
   void initState() {
     super.initState();
@@ -33,6 +45,7 @@ class _AntrianPagesState extends State<AntrianPages> {
     });
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman antrian pasien
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -69,6 +82,7 @@ class _AntrianPagesState extends State<AntrianPages> {
     );
   }
 
+  /// Method buildItemAntrian digunakan untuk membuat tampilan item antrian pasien
   Widget buildItemAntrian(Size size) {
     return Column(
       children: [
@@ -209,6 +223,7 @@ class _AntrianPagesState extends State<AntrianPages> {
     );
   }
 
+  /// Method buildEllipse digunakan untuk membuat tampilan elips pada halaman antrian pasien
   Widget buildEllipse() {
     return Positioned(
       child: Align(
@@ -228,6 +243,7 @@ class _AntrianPagesState extends State<AntrianPages> {
     );
   }
 
+  /// Method buildTextInformasi digunakan untuk membuat tampilan text informasi pada halaman antrian pasien
   Widget buildTextInformasi(Size size) {
     return Positioned(
       child: Align(
@@ -251,6 +267,7 @@ class _AntrianPagesState extends State<AntrianPages> {
     );
   }
 
+  /// Method buildImage digunakan untuk membuat tampilan gambar pada halaman antrian pasien
   Widget buildImage() {
     return Positioned(
       child: Align(
@@ -270,6 +287,7 @@ class _AntrianPagesState extends State<AntrianPages> {
     );
   }
 
+  /// Method buildEllipseBottom1 digunakan untuk membuat tampilan elips pada bagian bawah halaman antrian pasien
   Widget buildEllipseBottom1() {
     return Positioned(
       child: Align(
@@ -285,6 +303,7 @@ class _AntrianPagesState extends State<AntrianPages> {
     );
   }
 
+  /// Method buildEllipseBottom2 digunakan untuk membuat tampilan elips pada bagian bawah halaman antrian pasien
   Widget buildEllipseBottom2() {
     return Positioned(
       child: Align(

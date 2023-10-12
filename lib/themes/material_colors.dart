@@ -1,5 +1,11 @@
+/// Nama Module: material_colors.dart
+/// Deskripsi: Modul ini digunakan untuk membuat material color
+/// 
+/// Kode ini berisi implementasi material color
+
 import 'package:flutter/material.dart';
 
+/// Mendeklarasikan colorPrimary yang akan digunakan pada aplikasi
 MaterialColor colorPrimary = const MaterialColor(0xFFD45894,
 <int, Color>{
   50: Color.fromARGB(50, 53, 91, 167),

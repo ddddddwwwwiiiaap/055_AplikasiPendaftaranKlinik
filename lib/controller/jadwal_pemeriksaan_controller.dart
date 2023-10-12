@@ -1,21 +1,31 @@
+/// Nama Module: jadwal_pemeriksaan_controller.dart
+/// Deskripsi: Modul ini digunakan untuk membuat controller jadwal pemeriksaan
+///
+/// Kode ini berisi implementasi controller jadwal pemeriksaan
+
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+/// JadwalPemeriksaanController class adalah class yang digunakan untuk membuat controller jadwal pemeriksaan
 class JadwalPemeriksaanController {
+  /// streamController adalah variabel yang digunakan untuk mengatur stream dari data jadwal pemeriksaan yang akan ditampilkan pada halaman jadwal pemeriksaan pasien dan jadwal pemeriksaan admin
   final StreamController<List<DocumentSnapshot>> streamController =
       StreamController<List<DocumentSnapshot>>.broadcast();
 
+  /// stream adalah variabel yang digunakan untuk mengatur stream dari data jadwal pemeriksaan
   Stream<List<DocumentSnapshot>> get stream => streamController.stream;
 
+  /// Future deleteAntrianPoliAutomatically digunakan untuk menghapus antrian poli secara otomatis
   final Stream<QuerySnapshot> streamAntrianUsers = FirebaseFirestore.instance
       .collection("users")
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .collection("antrian")
       .snapshots();
 
+  /// Future deleteAntrianPoliAutomatically digunakan untuk menghapus antrian poli secara otomatis
   Future<dynamic> deleteAntrianPoli(String documentId) async {
     try {
       User? users = FirebaseAuth.instance.currentUser;
@@ -52,22 +62,25 @@ class JadwalPemeriksaanController {
     }
   }
 
+  /// Future getJadwalPemeriksaan digunakan untuk mendapatkan data jadwal pemeriksaan
   Future<void> decrementNoAntrian(String userId) async {
-  DocumentReference userRef = FirebaseFirestore.instance.collection('users').doc(userId);
+    DocumentReference userRef =
+        FirebaseFirestore.instance.collection('users').doc(userId);
 
-  FirebaseFirestore.instance.runTransaction((transaction) async {
-    DocumentSnapshot userSnapshot = await transaction.get(userRef);
-    Map<String, dynamic>? userData = userSnapshot.data() as Map<String, dynamic>?;
+    /// FirebasesFirestore.instance.runTransaction digunakan untuk mengurangi nomor antrian
+    FirebaseFirestore.instance.runTransaction((transaction) async {
+      DocumentSnapshot userSnapshot = await transaction.get(userRef);
+      Map<String, dynamic>? userData =
+          userSnapshot.data() as Map<String, dynamic>?;
 
-    if (userData != null) {
-      int? noAntrian = userData['noAntrian'] as int?;
-      if (noAntrian != null && noAntrian > 0) {
-        noAntrian--;
+      if (userData != null) {
+        int? noAntrian = userData['noAntrian'] as int?;
+        if (noAntrian != null && noAntrian > 0) {
+          noAntrian--;
 
-        transaction.update(userRef, {'noAntrian': noAntrian});
+          transaction.update(userRef, {'noAntrian': noAntrian});
+        }
       }
-    }
-  });
-}
-
+    });
+  }
 }

@@ -1,3 +1,8 @@
+//// Nama Module : pendaftaran.dart
+/// Deskripsi : Modul ini digunakan untuk menampilkan halaman pendaftaran pasien
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman pendaftaran pasien
+
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:aplikasipendaftaranklinik/controller/pendaftaran_controller.dart';
 import 'package:aplikasipendaftaranklinik/controller/poli_controller.dart';
@@ -11,9 +16,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+/// Pendaftaran class adalah widget yang digunakan untuk membuat tampilan halaman pendaftaran pasien
 class Pendaftaran extends StatefulWidget {
+  /// String? uId adalah variabel yang digunakan untuk menyimpan id user
   String? uId;
+  /// String? nama adalah variabel yang digunakan untuk menyimpan nama user
   String? nama;
+  /// Fungsi Pendaftaran({Key? key}) adalah konstruktor dari class Pendaftaran yang menerima parameter key dengan tipe Key yang bersifat opsional dan menerima parameter uId dengan tipe String yang bersifat opsional dan menerima parameter nama dengan tipe String yang bersifat opsional
+  /// Fungsi ini akan dijalankan ketika class Pendaftaran dipanggil
   Pendaftaran({
     Key? key,
     this.uId,
@@ -24,6 +34,7 @@ class Pendaftaran extends StatefulWidget {
   State<Pendaftaran> createState() => _PendaftaranState();
 }
 
+/// _PendaftaranState class adalah class yang digunakan untuk menampilkan halaman pendaftaran pasien
 class _PendaftaranState extends State<Pendaftaran> {
   var pendaftaranController = PendaftaranController();
   var poliController = PoliController();
@@ -39,6 +50,7 @@ class _PendaftaranState extends State<Pendaftaran> {
   final TextEditingController waktuantrian = TextEditingController();
   String? namaPoli;
 
+  /// Futur<Null> _selectDate digunakan untuk membuat tampilan pilih tanggal pada halaman pendaftaran pasien
   Future<Null> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
@@ -54,6 +66,7 @@ class _PendaftaranState extends State<Pendaftaran> {
       });
   }
 
+  /// Futur<Null> _selectTime digunakan untuk membuat tampilan pilih waktu pada halaman pendaftaran pasien
   Future<Null> _selectTime(BuildContext context) async {
     final TimeOfDay? picked = await showTimePicker(
       context: context,
@@ -73,6 +86,7 @@ class _PendaftaranState extends State<Pendaftaran> {
       });
   }
 
+  /// initState digunakan untuk menjalankan method yang pertama kali ketika halaman dibuka
   @override
   void initState() {
     tanggalantrian.text = DateFormat.yMd().format(DateTime.now());
@@ -83,6 +97,7 @@ class _PendaftaranState extends State<Pendaftaran> {
     super.initState();
   }
 
+  /// Future<dynamic> createAntrianPoli digunakan untuk membuat antrian pasien
   Future<dynamic> createAntrianPoli() async {
     if (_formKey.currentState!.validate()) {
       showAlertDialogLoading(context);
@@ -135,6 +150,7 @@ class _PendaftaranState extends State<Pendaftaran> {
     }
   }
 
+  /// Future<dynamic> updateDataUsers digunakan untuk mengupdate data pasien
   Future<dynamic> updateDataUsers() async {
     DocumentReference documentReference =
         FirebaseFirestore.instance.collection('users').doc(widget.uId);
@@ -157,6 +173,7 @@ class _PendaftaranState extends State<Pendaftaran> {
     );
   }
 
+  /// showAlertDialogLoading digunakan untuk menampilkan dialog loading
   showAlertDialogLoading(BuildContext context) {
     AlertDialog alert = AlertDialog(
       content: Row(
@@ -181,6 +198,7 @@ class _PendaftaranState extends State<Pendaftaran> {
     );
   }
 
+  /// signUpDialog digunakan untuk menampilkan dialog pendaftaran berhasil
   signUpDialog() {
     return showDialog(
       context: context,
@@ -207,6 +225,7 @@ class _PendaftaranState extends State<Pendaftaran> {
     );
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman pendaftaran pasien
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -240,6 +259,7 @@ class _PendaftaranState extends State<Pendaftaran> {
     );
   }
 
+  /// Method buildTextTitle digunakan untuk membuat tampilan judul pada halaman pendaftaran pasien
   Widget buildTextTitle() {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 40),
@@ -254,6 +274,7 @@ class _PendaftaranState extends State<Pendaftaran> {
     );
   }
 
+  /// Method buildFormAmbilAntrian digunakan untuk membuat tampilan form pendaftaran pasien
   Widget buildFormAmbilAntrian(Size size) {
     final format = DateFormat('dd-MM-yyyy');
     return Container(
@@ -413,6 +434,7 @@ class _PendaftaranState extends State<Pendaftaran> {
     );
   }
 
+  /// Method buildButtonDaftar digunakan untuk membuat tampilan button daftar pada halaman pendaftaran pasien
   Widget buildButtonDaftar() {
     return ElevatedButton(
       onPressed: createAntrianPoli,
@@ -437,6 +459,7 @@ class _PendaftaranState extends State<Pendaftaran> {
     );
   }
 
+  /// Methof builFooter digunakan untuk membuat tampilan footer pada halaman pendaftaran pasien
   Widget buildFooter(Size size) {
     return Container(
       margin: const EdgeInsets.only(top: 40),

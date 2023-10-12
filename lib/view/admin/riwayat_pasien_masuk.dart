@@ -1,22 +1,30 @@
+/// Nama Module : riwayat_pasien_masuk.dart
+/// Deskripsi : Modul ini digunakan untuk menampilkan riwayat pasien masuk
+///
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman riwayat pasien masuk
+
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
 import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/homepage_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import '../../themes/custom_colors.dart';
 
+/// RiwayatPasienMasuk class adalah widget yang digunakan untuk membuat tampilan halaman riwayat pasien masuk
 class RiwayatPasienMasuk extends StatefulWidget {
+  ///const RiwayatPasienMasuk({Key? key}) digunakan untuk membuat konstruktor dari class RiwayatPasienMasuk yang menerima parameter key dengan tipe Key yang bersifat opsional
   const RiwayatPasienMasuk({super.key});
 
   @override
   State<RiwayatPasienMasuk> createState() => _RiwayatPasienMasukState();
 }
 
+/// _RiwayatPasienMasukState class adalah class yang digunakan untuk menampilkan halaman riwayat pasien masuk
 class _RiwayatPasienMasukState extends State<RiwayatPasienMasuk> {
   final Stream<QuerySnapshot> _streamRiwayatPasienMasuk =
       FirebaseFirestore.instance.collection("riwayat pasien masuk").snapshots();
 
+  /// Method build digunakan untuk membuat tampilan halaman riwayat pasien masuk
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -39,89 +47,88 @@ class _RiwayatPasienMasukState extends State<RiwayatPasienMasuk> {
     );
   }
 
+  /// Method buildListRiwayat digunakan untuk membuat tampilan list riwayat pasien masuk
   Widget buildListRiwayat(size) {
     return StreamBuilder(
-        stream: _streamRiwayatPasienMasuk,
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return const Center(
-              child: Text("Error!"),
-            );
-          } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-            return const Center(
-              child: Text("Belum Ada Data!"),
-            );
-          } else {
-            return ListView(
-              children: snapshot.data!.docs.map((DocumentSnapshot data) {
-                return Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  child: Container(
-                      padding: const EdgeInsets.all(8),
-                      child: ListTile(
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Nama Pasien"),
-                                  Text(
-                                    "${data['nama pasien']}",
-                                    style: TextStyle(
-                                        color: colorPinkText,
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              ),
+      stream: _streamRiwayatPasienMasuk,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (snapshot.hasError) {
+          return const Center(
+            child: Text("Error!"),
+          );
+        } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+          return const Center(
+            child: Text("Belum Ada Data!"),
+          );
+        } else {
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot data) {
+              return Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                child: Container(
+                    padding: const EdgeInsets.all(8),
+                    child: ListTile(
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Nama Pasien"),
+                                Text(
+                                  "${data['nama pasien']}",
+                                  style: TextStyle(
+                                      color: colorPinkText,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Masuk"),
-                                  Text(
-                                    "${data['waktu antrian']}",
-                                    style: TextStyle(
-                                        color: colorPinkText,
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Masuk"),
+                                Text(
+                                  "${data['waktu antrian']}",
+                                  style: TextStyle(
+                                      color: colorPinkText,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Keluar"),
-                                  Text(
-                                    "${data['selesai antrian']}",
-                                    style: TextStyle(
-                                        color: colorPinkText,
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Keluar"),
+                                Text(
+                                  "${data['selesai antrian']}",
+                                  style: TextStyle(
+                                      color: colorPinkText,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
                             ),
-                          ],
-                        ),
-                      )),
-                );
-              }).toList(),
-            );
-          }
-        });
+                          ),
+                        ],
+                      ),
+                    )),
+              );
+            }).toList(),
+          );
+        }
+      },
+    );
   }
 }

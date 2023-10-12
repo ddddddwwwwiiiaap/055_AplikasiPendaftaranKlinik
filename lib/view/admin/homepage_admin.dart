@@ -1,3 +1,8 @@
+/// Nama Module : Home Page Admin
+/// Deskripsi : Modul ini digunakan untuk menampilkan halaman home admin
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman home admin
+
 import 'package:aplikasipendaftaranklinik/controller/auth_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
@@ -11,13 +16,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+/// HomePageAdmin class adalah widget yang digunakan untuk membuat tampilan halaman home admin
 class HomePageAdmin extends StatefulWidget {
+  /// Fungsi HomePageAdmin({Key? key}) adalah konstruktor dari class HomePageAdmin yang menerima parameter key dengan tipe Key yang bersifat opsional
+  /// Fungsi ini akan dijalankan ketika class HomePageAdmin dipanggil
   const HomePageAdmin({super.key});
 
   @override
   State<HomePageAdmin> createState() => _HomePageAdminState();
 }
 
+/// _HomePageAdminState class adalah class yang digunakan untuk menampilkan halaman home admin
 class _HomePageAdminState extends State<HomePageAdmin> {
   final Stream<QuerySnapshot> streamAntrianPasien =
       FirebaseFirestore.instance.collection('antrian pasien').snapshots();
@@ -31,6 +40,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
   String? tglLahir;
   String? alamat;
 
+  /// Future getUser digunakan untuk mengambil data user dari database
   Future<UserModel?> getUser() async {
     await FirebaseFirestore.instance
         .collection('users')
@@ -56,6 +66,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
     return null;
   }
 
+  /// initState digunakan untuk menjalankan method getUser
   @override
   void initState() {
     // TODO: implement initState
@@ -63,6 +74,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
     getUser();
   }
 
+  /// showDialogExitToApp digunakan untuk menampilkan dialog konfirmasi keluar aplikasi
   showDialogExitToApp() {
     showDialog(
       context: context,
@@ -89,6 +101,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
     );
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman home admin
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -116,6 +129,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
     );
   }
 
+  /// Method homeDrawer digunakan untuk membuat tampilan drawer pada halaman home admin
   Widget homeDrawer() {
     return Drawer(
       child: ListView(
@@ -223,6 +237,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
     );
   }
 
+  /// Method buildIconHome digunakan untuk membuat tampilan icon pada halaman home admin
   Widget buildIconHome() {
     return Positioned(
       child: Align(
@@ -232,6 +247,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
     );
   }
 
+  /// Method buildTextTitle digunakan untuk membuat tampilan text title pada halaman home admin
   Widget buildTextTitle() {
     return Positioned.fill(
       left: 16,
@@ -249,6 +265,7 @@ class _HomePageAdminState extends State<HomePageAdmin> {
     );
   }
 
+  /// Method buildItemBody digunakan untuk membuat tampilan body pada halaman home admin
   Widget buildItemBody(Size size) {
     return Positioned(
       child: Align(

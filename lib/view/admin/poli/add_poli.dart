@@ -1,3 +1,8 @@
+/// Nama Module: add_poli.dart
+/// Deskripsi: Modul ini digunakan untuk menambahkan data poli
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman tambah data poli
+
 import 'package:aplikasipendaftaranklinik/controller/poli_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/poli_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/material_colors.dart';
@@ -5,18 +10,23 @@ import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/poli/poli.dart';
 import 'package:flutter/material.dart';
 
+/// AddPoli class adalah widget yang digunakan untuk membuat tampilan halaman tambah data poli
 class AddPoli extends StatefulWidget {
+  /// Fungsi AddPoli({Key? key}) adalah konstruktor dari class AddPoli yang menerima parameter key dengan tipe Key yang bersifat opsional
+  /// Fungsi ini akan dijalankan ketika class AddPoli dipanggil
   const AddPoli({super.key});
 
   @override
   State<AddPoli> createState() => _AddPoliState();
 }
 
+/// _AddPoliState class adalah class yang digunakan untuk menampilkan halaman tambah data poli
 class _AddPoliState extends State<AddPoli> {
   var poliController = PoliController();
   final formKey = GlobalKey<FormState>();
   String? namaPoli;
 
+  /// Method build digunakan untuk membuat tampilan halaman tambah data poli
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

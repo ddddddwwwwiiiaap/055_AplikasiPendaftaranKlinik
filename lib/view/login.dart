@@ -1,3 +1,9 @@
+/// Nama Module: login.dart
+/// Deskripsi: Modul untuk layar login dalam aplikasi Flutter pendaftaran klinik.
+///
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman login.
+/// Pengguna dapat memasukkan email dan password mereka untuk masuk ke aplikasi
+
 import 'package:aplikasipendaftaranklinik/controller/auth_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/user_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
@@ -6,7 +12,10 @@ import 'package:aplikasipendaftaranklinik/utils/constants.dart';
 import 'package:aplikasipendaftaranklinik/view/register.dart';
 import 'package:flutter/material.dart';
 
+/// Login class adalah widget yang digunakan untuk membuat tampilan halaman login
 class Login extends StatefulWidget {
+  /// Fungsi Login({Key? key}) adalah konstruktor dari class Login yang menerima parameter key dengan tipe Key yang bersifat opsional
+  /// Fungsi ini akan dijalankan ketika class Login dipanggil
   const Login({super.key});
 
   @override
@@ -21,12 +30,14 @@ class _LoginState extends State<Login> {
 
   late bool _showPassword = true;
 
+  /// Toggle keamanan tampak password untuk menampilkan atau menyembunyikan password
   void togglePasswordVisibility() {
     setState(() {
       _showPassword = !_showPassword;
     });
   }
 
+  /// Digunakan untuk menampilkan snackbar
   displaySnackBar(text) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -36,6 +47,7 @@ class _LoginState extends State<Login> {
     );
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman login
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -79,6 +91,7 @@ class _LoginState extends State<Login> {
     );
   }
 
+  /// Method buildHeader digunakan untuk membuat tampilan header pada halaman login
   Widget buildHeader() {
     return Container(
       padding: const EdgeInsets.all(24),
@@ -105,6 +118,7 @@ class _LoginState extends State<Login> {
     );
   }
 
+  /// Method buildIcon digunakan untuk membuat tampilan icon pada halaman login
   Widget buildIcon() {
     return Container(
       margin: const EdgeInsets.only(bottom: 24),
@@ -112,6 +126,7 @@ class _LoginState extends State<Login> {
     );
   }
 
+  /// Method buildFormLogin digunakan untuk membuat tampilan form login pada halaman login
   Widget buildFormLogin() {
     return Form(
       key: formkey,
@@ -201,6 +216,7 @@ class _LoginState extends State<Login> {
     );
   }
 
+  /// Method buildButtonLogin digunakan untuk membuat tampilan button login pada halaman login
   Widget buildButtonLogin() {
     return ElevatedButton(
       onPressed: () async {
@@ -231,6 +247,7 @@ class _LoginState extends State<Login> {
     );
   }
 
+  /// Method buildFooter digunakan untuk membuat tampilan footer pada halaman login
   Widget buildFooter() {
     return Container(
       //margin: const EdgeInsets.only(top: 24),

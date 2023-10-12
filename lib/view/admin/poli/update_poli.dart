@@ -1,11 +1,20 @@
+/// Nama Module : update_poli.dart
+/// Deskripsi : Modul ini digunakan untuk mengupdate data poli
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman update poli
+
 import 'package:aplikasipendaftaranklinik/controller/poli_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/poli_model.dart';
 import 'package:aplikasipendaftaranklinik/view/admin/poli/poli.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+/// UpdatePoli class adalah widget yang digunakan untuk membuat tampilan halaman update poli
 class UpdatePoli extends StatefulWidget {
+
+  /// PoliModel poliModel digunakan untuk menyimpan data poli
   PoliModel poliModel;
+  ///UpdatePoli({Key? key, required PoliModel poliModel, required DocumentSnapshot<Object?> poli}) digunakan untuk membuat konstruktor dari class UpdatePoli yang menerima parameter key dengan tipe Key yang bersifat opsional, poliModel dengan tipe PoliModel dan poli dengan tipe DocumentSnapshot<Object?> yang bersifat wajib
   UpdatePoli({
     Key? key,
     required this.poliModel,
@@ -16,11 +25,13 @@ class UpdatePoli extends StatefulWidget {
   State<UpdatePoli> createState() => _UpdatePoliState();
 }
 
+/// _UpdatePoliState class adalah class yang digunakan untuk menampilkan halaman update poli
 class _UpdatePoliState extends State<UpdatePoli> {
   var poliController = PoliController();
   final formKey = GlobalKey<FormState>();
   String? namaPoli;
 
+  /// Method build digunakan untuk membuat tampilan halaman update poli
   @override
   Widget build(BuildContext context) {
     return Scaffold(

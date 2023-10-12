@@ -1,3 +1,8 @@
+/// Nama Module: poli.dart
+/// Deskripsi: Modul ini digunakan untuk menampilkan data poli
+/// 
+/// Kode ini berisi implementasi tampilan dan logika untuk halaman data poli
+
 import 'package:aplikasipendaftaranklinik/controller/poli_controller.dart';
 import 'package:aplikasipendaftaranklinik/model/poli_model.dart';
 import 'package:aplikasipendaftaranklinik/themes/custom_colors.dart';
@@ -9,16 +14,21 @@ import 'package:aplikasipendaftaranklinik/view/admin/poli/update_poli.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+/// Poli class adalah widget yang digunakan untuk membuat tampilan halaman data poli
 class Poli extends StatefulWidget {
+  ///const Poli({Key? key}) digunakan untuk membuat konstruktor dari class Poli yang menerima parameter key dengan tipe Key yang bersifat opsional
+  ///Fungsi ini akan dijalankan ketika class Poli dipanggil
   const Poli({super.key});
 
   @override
   State<Poli> createState() => _PoliState();
 }
 
+/// _PoliState class adalah class yang digunakan untuk menampilkan halaman data poli
 class _PoliState extends State<Poli> {
   var pc = PoliController();
 
+  /// initState digunakan untuk menjalankan method getPoli
   @override
   void initState() {
     // TODO: implement initState
@@ -26,6 +36,7 @@ class _PoliState extends State<Poli> {
     super.initState();
   }
 
+  /// Method build digunakan untuk membuat tampilan halaman data poli
   @override
   Widget build(BuildContext context) {
     return Scaffold(
